@@ -47,17 +47,21 @@ public class StringBuilderTask{
 		return splitinputstring.split(seperator);
 	}
 	
-	public StringBuilder deleteStringsInSB (StringBuilder inputsb , int deletestringindex , String seperator) {
+	public StringBuilder deleteStringsInSB (StringBuilder inputsb , int deletestringindex , String seperator) throws StringBuilderException {
 		String[] inputstringarray = splitStringBuilder(inputsb, seperator);
-		/*if (deletestringindex < 0 || deletestringindex >= inputstringarray.length) {
-			throw new IllegalArgumentException("Invalid index for deletion.");*/
+		
+		if (deletestringindex < 0 || deletestringindex >= inputstringarray.length) {
+			throw new StringBuilderException ("Invalid index for deletion.");
+			
 		String stringtodelete = inputstringarray[deletestringindex - 1];
 		int currentindex = 0;
 		for (int i = 0; i <= deletestringindex; i++) {
 			currentindex = inputsb.indexOf(stringtodelete, currentindex);
+			
 			if (i < deletestringindex) {
 				currentindex += stringtodelete.length() + seperator.length();
 			}
+			
 		}
 		int endCharIndex = currentindex + stringtodelete.length();
 		if (deletestringindex < inputstringarray.length - 1) {
@@ -67,9 +71,18 @@ public class StringBuilderTask{
 		return inputsb;
 	}
 	
-	public StringBuilder deleteCharsInSB (StringBuilder inputsb , int startcharindex , int endcharindex) {
-		return inputsb.delete(startcharindex , endcharindex);
+	public StringBuilder deleteCharsInSB(StringBuilder inputsb, int startcharindex, int endcharindex) throws StringBuilderException {
+		if (startcharindex < 0 || endcharindex > inputsb.length()) {
+			throw new StringBuilderException("Indices out of bounds. Valid range: 0 to " + inputsb.length());
+		}
+
+		if (startcharindex >= endcharindex) {
+			throw new StringBuilderException("Start index must be less than end index.");
+		}
+
+		return inputsb.delete(startcharindex, endcharindex);
 	}
+
 	
 	public StringBuilder replaceSeperator (StringBuilder inputsb , String seperator , String newseperator) {
 		int seperatorindex = inputsb.indexOf(seperator);
@@ -98,7 +111,8 @@ public class StringBuilderTask{
 	}
 	
 	public int maximumIndex (StringBuilder inputsb , String seperator) {
-		
+		int seperatorindex = inputsb.lastIndexOf(seperator);
+		return seperatorindex;
 	}
 	
 	public int coustomSeperatorIndex (StringBuilder inputsb , String seperator , int nthseperator) {

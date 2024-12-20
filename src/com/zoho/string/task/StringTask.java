@@ -196,14 +196,10 @@ public class StringTask {
     }
 
     public String mergeStringWithSymbol(List<String> inputStrings, CharSequence joiningChar) throws StringException {
-        try {
-            if (inputStrings == null || inputStrings.isEmpty()) {
-                throw new StringException("List can't be null or empty");
-            }
-            return String.join(joiningChar, inputStrings);
-        } catch (Exception e) {
-            throw new StringException("Failed to merge strings with symbol", e);
-        }
+		if (inputStrings == null || inputStrings.isEmpty()) {
+			throw new StringException("List can't be null or empty");
+		}
+		return String.join(joiningChar, inputStrings);
     }
 
     public Boolean areStringsCaseEqual(String string1, String string2) throws StringException {

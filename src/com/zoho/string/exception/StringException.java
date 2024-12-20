@@ -12,4 +12,5 @@ public class StringException extends Exception {
     public StringException(String message, Throwable cause) {
         super(message, cause);
     }
+	
 }

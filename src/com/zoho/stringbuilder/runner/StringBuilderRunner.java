@@ -5,11 +5,18 @@ import java.util.*;
 
 public class StringBuilderRunner{
 	static Scanner scanner = new Scanner(System.in);
-	public static void main(String[] args){
 	StringBuilderTask task = new StringBuilderTask();
-	int enteredchoice = 1;
-	Boolean condition = true;
 	
+	public static void main(String[] args){
+		StringBuilderRunner runner = new StringBuilderRunner();
+		runner.runOperations();
+
+	
+	private void runOperations() {
+		
+		int enteredchoice = 0;
+		Boolean condition = true;
+		
 		do {
 			
 			System.out.println("Select an operation to perform:");
@@ -25,61 +32,51 @@ public class StringBuilderRunner{
 			System.out.println("10. Create a StringBuilder and find the last seperator index");
 			System.out.println("0. Exit");
 			
-			while (condition){
-				try {
-					enteredchoice = scanner.nextInt();
-					scanner.nextLine();
-					break;
-				}
-				catch (InputMismatchException e){
-					printOutput("Invalid Choice, Please enter a valid number ");
-					scanner.nextLine();
-				}
-			}
+			enteredchoice = getIntInput("Enter a choice from 0 to 10: ");
 			
-			if(enteredchoice < 0 || enteredchoice > 20){
-				printOutput("Invalid Choice, Enter a choice from 0 to 20");
+			if(enteredchoice < 0 || enteredchoice > 10){
+				printOutput("Invalid Choice, Enter a choice from 0 to 10");
 			}
 			
 			switch (enteredchoice){
 				case 1:
-					createAndAddStringsToIt(task);
+					createAndAddStringsToIt();
 					break;
 				
 				case 2:
-					addStringsWithSeperator (task);
+					addStringsWithSeperator();
 					break;
 					
 				case 3:
-					insertAnotherStrings (task);
+					insertAnotherStrings();
 					break;
 					
 				case 4:
-					deleteStrings (task);
+					deleteStrings();
 					break;
 					
 				case 5:
-					replaceSeperator (task);
+					replaceSeperator();
 					break;
 					
 				case 6:
-					reverseStringBuilder (task);
+					reverseStringBuilder();
 					break;
 					
 				case 7:
-					deleteCharacters (task);
+					deleteCharacters();
 					break;
 					
 				case 8:
-					replaceCharacters (task);
+					replaceCharacters();
 					break;
 					
 				case 9:
-					firstSeperatorIndex (task);
+					firstSeperatorIndex();
 					break;
 					
 				case 10:
-					case9(task);
+					lastSeperatorIndex();
 					break;
 					
 				case 0:
@@ -88,6 +85,7 @@ public class StringBuilderRunner{
 			}
 		}
 		while (enteredchoice != 0);
+	}
 	}
 	
 	public static String[] getStringInput(){
