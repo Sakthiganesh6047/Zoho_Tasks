@@ -128,14 +128,15 @@ public class ArrayListRunner  {
 					break;
 					
 				case 0:
-					util.UtilPrintOutput.printOutput("Terminated Successfully!");
+					UtilPrintOutput.printOutput("Terminated Successfully!");
+					
 					break;
 					
 				}
 			} catch (Exception e) {
-				UtilPrintOutput.printOutput("Exception: " + e.getMessage());
-				UtilPrintOutput.printOutput("Cause: " + e.getCause());
-				//e.printStackTrace();
+				e.printStackTrace();
+				/*UtilPrintOutput.printOutput("Exception: " + e.getMessage());
+				UtilPrintOutput.printOutput("Cause: " + e.getCause());*/
 			}
 		}
 		while (enteredChoice != 0);
@@ -285,7 +286,7 @@ public class ArrayListRunner  {
 	
 	public <T> void createCombinedSublistInverseOrder() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		List<T> arrayList2 = createArrayListWithStrings();
+		List<T> arrayList2 = null; //createArrayListWithStrings();
 		List<?> arrayList3 = task.combinedList(arrayList2 , arrayList1);
 		printSizeAndList(arrayList3);
 	}
@@ -389,3 +390,4 @@ public class ArrayListRunner  {
 		 return array;
 	 }
 }
+
