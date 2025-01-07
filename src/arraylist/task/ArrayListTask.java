@@ -24,7 +24,7 @@ public class ArrayListTask {
 		    }
 		    return list;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to add elements to the List"));
+			e.appendMessage("Failed to add elements to the List");
 			throw e;
 		}
 	}
@@ -39,7 +39,7 @@ public class ArrayListTask {
 			list.add(addIndex , (T) inputString);
 			return list;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to add the value at the index in the List"));
+			e.appendMessage("Failed to add the value at the index in the List");
 			throw e;
 		}
 	}
@@ -50,7 +50,7 @@ public class ArrayListTask {
 			list.add(object);
 			return list;	
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to add the object to the List"));
+			e.appendMessage("Failed to add the object to the List");
 			throw e;
 		}
 	}
@@ -60,7 +60,7 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.indexOf(stringToFind);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the first occurence of the List"));
+			e.appendMessage("Failed to get the first occurence of the List");
 			throw e;
 		}
 	}
@@ -70,7 +70,7 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.lastIndexOf(stringToFind);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the last occurence of the List"));
+			e.appendMessage("Failed to get the last occurence of the List");
 			throw e;
 		}
 	}
@@ -83,7 +83,7 @@ public class ArrayListTask {
 		}
 		return (list.get(stringIndex));
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the value by index in the List"));
+			e.appendMessage("Failed to get the value by index in the List");
 			throw e;
 		}
 	}
@@ -96,7 +96,7 @@ public class ArrayListTask {
 		}
 		return new ArrayList<>(list.subList(startIndex, endIndex));
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to create sub arrayList"));
+			e.appendMessage("Failed to create sub arrayList");
 			throw e;
 		}
 	}
@@ -109,7 +109,7 @@ public class ArrayListTask {
 			list3.addAll(list2);
 			return list3;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to combine List"));
+			e.appendMessage("Failed to combine List");
 			throw e;
 		}
 	}
@@ -123,7 +123,7 @@ public class ArrayListTask {
 			list.remove(delIndex);
 			return list;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to delete the element at the given index in the List"));
+			e.appendMessage("Failed to delete the element at the given index in the List");
 			throw e;
 		}
 	}
@@ -134,7 +134,7 @@ public class ArrayListTask {
 			list.clear();
 			//list = null; 	null not clearing the list
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to delete List"));
+			e.appendMessage("Failed to delete List");
 			throw e;
 		}
 	}
@@ -144,7 +144,7 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.contains(searchString);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to check the presence of the string in the List"));
+			e.appendMessage("Failed to check the presence of the string in the List");
 			throw e;
 		}
 	}
@@ -156,7 +156,7 @@ public class ArrayListTask {
 			list1.removeAll(list2);
 			return list1;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to delete the subList"));
+			e.appendMessage("Failed to delete the subList");
 			throw e;
 		}
 	}
@@ -168,7 +168,7 @@ public class ArrayListTask {
 			list1.retainAll(list2);
 			return list1;
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to retain List"));
+			e.appendMessage("Failed to retain List");
 			throw e;
 		}
 	}
@@ -178,7 +178,7 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.size();
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get size"));
+			e.appendMessage("Failed to get size");
 			throw e;
 		}
 	}

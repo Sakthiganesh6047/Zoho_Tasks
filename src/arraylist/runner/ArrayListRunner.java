@@ -318,7 +318,7 @@ public class ArrayListRunner  {
 			printSizeAndList(arrayList1);
 			printSizeAndList(arrayList2);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Something went Wrong!"));
+			e.appendMessage("Something went Wrong!");
 			throw e;
 		}
 	}
