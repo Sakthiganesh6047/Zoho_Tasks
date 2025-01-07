@@ -3,17 +3,14 @@ package hashmap.runner;
 import hashmap.task.HashMapTask;
 import util.UtilPrintOutput;
 import util.UtilGetInput;
-
 import java.io.FileNotFoundException;
 import java.util.Map;
-import java.util.Scanner;
 import arraylist.customobj.CustomObj;
 import exception.CustomException;
 
 public class HashMapRunner {
 	
 	HashMapTask task = new HashMapTask();
-	Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws CustomException {
 		HashMapRunner runner = new HashMapRunner();
@@ -203,9 +200,9 @@ public class HashMapRunner {
 		V checkValue = (V) UtilGetInput.getStringInput("Enter the key to check in the hashmap: ");
 		Boolean availability = task.checkValueExists(hashMap1 , checkValue);
 		if (availability) {
-			util.UtilPrintOutput.printOutput("Yes, " + checkValue + "exists in the HashMap.");
+			UtilPrintOutput.printOutput("Yes, " + checkValue + "exists in the HashMap.");
 		} else {
-			util.UtilPrintOutput.printOutput("No, " + checkValue + " not exists in the HashMap.");
+			UtilPrintOutput.printOutput("No, " + checkValue + " not exists in the HashMap.");
 		}
 	}
 	
@@ -216,9 +213,9 @@ public class HashMapRunner {
 		K checkKey = (K) UtilGetInput.getStringInput("Enter the key to check in the hashmap: ");
 		Boolean availability = task.checkKeyExists(hashMap1 , checkKey);
 		if (availability) {
-			util.UtilPrintOutput.printOutput("Yes, " + checkKey + "exists in the HashMap.");
+			UtilPrintOutput.printOutput("Yes, " + checkKey + "exists in the HashMap.");
 		} else {
-			util.UtilPrintOutput.printOutput("No, " + checkKey + " not exists in the HashMap.");
+			UtilPrintOutput.printOutput("No, " + checkKey + " not exists in the HashMap.");
 		}
 	}
 	
@@ -239,7 +236,7 @@ public class HashMapRunner {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
-		util.UtilPrintOutput.printOutput((String) task.getKeyValue(hashMap1, searchKey));
+		UtilPrintOutput.printOutput((String) task.getKeyValue(hashMap1, searchKey));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -248,7 +245,7 @@ public class HashMapRunner {
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
 		V defaultValue = (V) UtilGetInput.getStringInput("Enter the Defdault value in case of Non Existence key: ");
-		util.UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, defaultValue));
+		UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, defaultValue));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -256,7 +253,7 @@ public class HashMapRunner {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
-		util.UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, (V) "Zoho"));
+		UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, (V) "Zoho"));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -349,26 +346,26 @@ public class HashMapRunner {
     }
     
     /*public <K,V> void addValuesToMap(Map<K, V> inputHashMap, int numberOfPairs, Class<K> keyType, Class<V> valueType) {
-    for (int i = 0; i < numberOfPairs; i++) {
-        K key = getInput("Enter key " + (i + 1) + ": ", keyType);
-        V value = getInput("Enter value for key " + key + ": ", valueType);
-        task.addKeyValuePair(inputHashMap, key, value);
-    }
-}
+	    for (int i = 0; i < numberOfPairs; i++) {
+	        K key = getInput("Enter key " + (i + 1) + ": ", keyType);
+	        V value = getInput("Enter value for key " + key + ": ", valueType);
+	        task.addKeyValuePair(inputHashMap, key, value);
+	    }
+	}
 
-private <T> T getInput(String prompt, Class<T> type) {
-
-    if (type == String.class) {
-        return type.cast(util.UtilGetInput.getStringInput(prompt));
-    } else if (type == Integer.class) {
-        return type.cast(util.UtilGetInput.getIntInput(prompt));
-    } else if (type == Long.class) {
-        return type.cast(util.UtilGetInput.getLongInput(prompt));
-    } else if (type == Double.class) {
-        return type.cast(util.UtilGetInput.getDoubleInput(prompt));
-    }
-	return null;
-}*/
+	private <T> T getInput(String prompt, Class<T> type) {
+	
+	    if (type == String.class) {
+	        return type.cast(UtilGetInput.getStringInput(prompt));
+	    } else if (type == Integer.class) {
+	        return type.cast(UtilGetInput.getIntInput(prompt));
+	    } else if (type == Long.class) {
+	        return type.cast(UtilGetInput.getLongInput(prompt));
+	    } else if (type == Double.class) {
+	        return type.cast(UtilGetInput.getDoubleInput(prompt));
+	    }
+		return null;
+	}*/
 
 
 }

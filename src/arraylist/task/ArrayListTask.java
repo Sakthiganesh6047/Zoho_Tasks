@@ -24,8 +24,8 @@ public class ArrayListTask {
 		    }
 		    return list;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to add elements to the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to add elements to the List"));
+			throw e;
 		}
 	}
 	
@@ -35,12 +35,12 @@ public class ArrayListTask {
 			checkListValidity(list);
 			if (addIndex < 0 || addIndex > list.size()) {
 				throw new CustomException("Index to add is greater than the size of the list.");
-			}
-				list.add(addIndex , (T) inputString);
-				return list;
+				}
+			list.add(addIndex , (T) inputString);
+			return list;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to add the value at the index in the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to add the value at the index in the List"));
+			throw e;
 		}
 	}
 	
@@ -50,8 +50,8 @@ public class ArrayListTask {
 			list.add(object);
 			return list;	
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to add the object to the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to add the object to the List"));
+			throw e;
 		}
 	}
 	
@@ -60,8 +60,8 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.indexOf(stringToFind);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the first occurence of the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the first occurence of the List"));
+			throw e;
 		}
 	}
 	
@@ -70,8 +70,8 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.lastIndexOf(stringToFind);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the last occurence of the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the last occurence of the List"));
+			throw e;
 		}
 	}
 	
@@ -83,8 +83,8 @@ public class ArrayListTask {
 		}
 		return (list.get(stringIndex));
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the value by index in the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the value by index in the List"));
+			throw e;
 		}
 	}
 	
@@ -96,8 +96,8 @@ public class ArrayListTask {
 		}
 		return new ArrayList<>(list.subList(startIndex, endIndex));
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to create sub arrayList");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to create sub arrayList"));
+			throw e;
 		}
 	}
 	
@@ -109,8 +109,8 @@ public class ArrayListTask {
 			list3.addAll(list2);
 			return list3;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to combine List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to combine List"));
+			throw e;
 		}
 	}
 	
@@ -123,8 +123,8 @@ public class ArrayListTask {
 			list.remove(delIndex);
 			return list;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to delete the element at the given index in the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to delete the element at the given index in the List"));
+			throw e;
 		}
 	}
 	
@@ -134,30 +134,30 @@ public class ArrayListTask {
 			list.clear();
 			//list = null; 	null not clearing the list
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to delete List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to delete List"));
+			throw e;
 		}
 	}
 	
 	public Boolean checkPresence(List<?> list , String searchString) throws CustomException {
 		try {
-		checkListValidity(list);
-		return list.contains(searchString);
+			checkListValidity(list);
+			return list.contains(searchString);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to check the presence of the string in the List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to check the presence of the string in the List"));
+			throw e;
 		}
 	}
 	
 	public List<?> deleteSubList(List<?> list1 , List<?> list2) throws CustomException {
 		try {
-		checkListValidity(list1);
-		checkListValidity(list2);
-		list1.removeAll(list2);
-		return list1;
+			checkListValidity(list1);
+			checkListValidity(list2);
+			list1.removeAll(list2);
+			return list1;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to delete the subList");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to delete the subList"));
+			throw e;
 		}
 	}
 	
@@ -168,8 +168,8 @@ public class ArrayListTask {
 			list1.retainAll(list2);
 			return list1;
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to retain List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to retain List"));
+			throw e;
 		}
 	}
 
@@ -178,8 +178,8 @@ public class ArrayListTask {
 			checkListValidity(list);
 			return list.size();
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get size");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get size"));
+			throw e;
 		}
 	}
 	

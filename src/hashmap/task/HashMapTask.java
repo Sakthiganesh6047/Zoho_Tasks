@@ -16,8 +16,8 @@ public class HashMapTask {
 			checkMapValidity(hashmap);
 			return hashmap.size();
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the size");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the size"));
+			throw e;
 		}
 	}
 	
@@ -26,8 +26,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        map.put(key, value);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to add the values");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to add the values"));
+			throw e;
 		}
     }
 	
@@ -36,8 +36,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        return map.containsKey(key);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to check the existence of the key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to check the existence of the key"));
+			throw e;
 		}
     }
 	
@@ -46,8 +46,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        return map.containsValue(value);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to check the existence of the values");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to check the existence of the values"));
+			throw e;
 		}
 	}
 	
@@ -60,18 +60,18 @@ public class HashMapTask {
 	        keySet.toArray(keysArray);
 	        return keysArray;
     	} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to extract the keys to an Array");
-		    throw e;
+    		e.addSuppressed(new CustomException("Failed to extract the keys to an Array"));
+			throw e;
 		}
 	}
 	
 	public <K,V> void updateHashMap(Map<K,V> map , K keyToAlter , V newValue) throws CustomException {
 		try {
-		checkMapValidity(map);
-		map.put(keyToAlter, newValue);
+			checkMapValidity(map);
+			map.put(keyToAlter, newValue);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to update the HashMap");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to update the HashMap"));
+			throw e;
 		}
 	}
 	
@@ -80,8 +80,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 			return map.get(keyToSearch);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the value of entered key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the value of entered key"));
+			throw e;
 		}
 	}
 	
@@ -90,8 +90,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 			return map.getOrDefault(keyToSearch , defaultValue);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to get the value of entered key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to get the value of entered key"));
+			throw e;
 		}
 	}
 	
@@ -100,18 +100,18 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.remove(keyToRemove);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to remove the key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to remove the key"));
+			throw e;
 		}
 	}
 	
 	public <K,V> void removeKeyIfValueMatches(Map<K,V> map , K keyToRemove , V checkValue) throws CustomException {
 		try {
-		checkMapValidity(map);
-		map.remove(keyToRemove, checkValue);
+			checkMapValidity(map);
+			map.remove(keyToRemove, checkValue);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to remove key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to remove key"));
+			throw e;
 		}
 	}
 	
@@ -120,18 +120,18 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.replace(replaceKey, replaceValue);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to replace List");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to replace List"));
+			throw e;
 		}
 	}
 	
 	public <K,V> void replaceKeyIfValueMatches(Map<K,V> map , K replaceKey , V checkValue , V replaceValue) throws CustomException {
 		try {
-		checkMapValidity(map);
-		map.replace(replaceKey , checkValue , replaceValue);
+			checkMapValidity(map);
+			map.replace(replaceKey , checkValue , replaceValue);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to replace key");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to replace key"));
+			throw e;
 		}
 	}
 	
@@ -141,8 +141,8 @@ public class HashMapTask {
 			checkMapValidity(map2);
 			map2.putAll(map1);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to transfer values");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to transfer values"));
+			throw e;
 		}
 	}
 	
@@ -151,8 +151,8 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.clear();
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Failed to remove entries.");
-		    throw e;
+			e.addSuppressed(new CustomException("Failed to remove entries."));
+			throw e;
 		}
 	}
 	

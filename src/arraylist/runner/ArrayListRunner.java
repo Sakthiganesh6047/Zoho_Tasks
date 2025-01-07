@@ -164,10 +164,10 @@ public class ArrayListRunner  {
 	@SuppressWarnings("unchecked")
 	public <T> void arrayListWithCoustomObjects() throws CustomException { 
 		List<T> arrayList1 = task.createList();
-		int customobjCount = util.UtilGetInput.getIntInput("Enter the Number of objects to add: ");
+		int customobjCount = UtilGetInput.getIntInput("Enter the Number of objects to add: ");
 		for (int i = 0 ; i < customobjCount ; i++) {
-			String objName = util.UtilGetInput.getStringInput("Enter the " + (i+1) + " object name: ");
-			int objValue = util.UtilGetInput.getIntInput("Enter the object " + (i+1) + " value: ");
+			String objName = UtilGetInput.getStringInput("Enter the " + (i+1) + " object name: ");
+			int objValue = UtilGetInput.getIntInput("Enter the object " + (i+1) + " value: ");
 			CustomObj object1 = new CustomObj(objName , objValue);
 			task.addCustomObject(arrayList1 , (T) object1);
 		}
@@ -177,16 +177,16 @@ public class ArrayListRunner  {
 	@SuppressWarnings("unchecked")
 	public <T> void arrayListOfDiffTypes() throws CustomException {
 		List<T> arrayList1 = task.createList();
-		int intCount = util.UtilGetInput.getIntInput("Enter the Number of strings to add: ");
+		int intCount = UtilGetInput.getIntInput("Enter the Number of strings to add: ");
 		T[] intArray = (T[]) getArray(intCount , Integer.class);
-		int stringCount = util.UtilGetInput.getIntInput("Enter the Number of strings to add: ");
+		int stringCount = UtilGetInput.getIntInput("Enter the Number of strings to add: ");
 		T[] stringArray = (T[]) getArray(stringCount , String.class);
 		task.addElementsToList(arrayList1 , stringArray);
 		task.addElementsToList(arrayList1 , intArray);
-		int customobjcount = util.UtilGetInput.getIntInput("Enter the Number of objects to add: ");
+		int customobjcount = UtilGetInput.getIntInput("Enter the Number of objects to add: ");
 		for (int i = 0 ; i < customobjcount ; i++) {
-			String objName = util.UtilGetInput.getStringInput("Enter the " + (i+1) + " object name: ");
-			int objValue = util.UtilGetInput.getIntInput("Enter the object " + (i+1) + " value: ");
+			String objName = UtilGetInput.getStringInput("Enter the " + (i+1) + " object name: ");
+			int objValue = UtilGetInput.getIntInput("Enter the object " + (i+1) + " value: ");
 			CustomObj object1 = new CustomObj(objName , objValue);
 			task.addCustomObject(arrayList1 , (T) object1);
 		}
@@ -195,7 +195,7 @@ public class ArrayListRunner  {
 	
 	public <T> void findIndex() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		String stringToFind = util.UtilGetInput.getStringInput("Enter the string to find its index: ");
+		String stringToFind = UtilGetInput.getStringInput("Enter the string to find its index: ");
 		int stringIndex = task.lastOccurenceOfString(arrayList1, stringToFind);
 		 if (stringIndex != -1) {
 	            System.out.println("The index of " + stringToFind +" is: " + stringIndex);
@@ -213,14 +213,14 @@ public class ArrayListRunner  {
 	
 	public <T> void getStringByIndex() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		int stringIndex = util.UtilGetInput.getIntInput("Enter the index of the string to retrieve: ");
+		int stringIndex = UtilGetInput.getIntInput("Enter the index of the string to retrieve: ");
 		UtilPrintOutput.printOutput("String at index " + stringIndex + ": " + task.getByIndex(arrayList1 , stringIndex));
 		printSizeAndList(arrayList1);
 	}
 	
 	public <T> void findDuplicatesOfStrings() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		String stringToFind = util.UtilGetInput.getStringInput("Enter the string to find its index: ");
+		String stringToFind = UtilGetInput.getStringInput("Enter the string to find its index: ");
 		int firstIndex = task.firstOccurenceOfString(arrayList1, stringToFind);
 		int lastIndex = task.lastOccurenceOfString(arrayList1, stringToFind);
 		if (firstIndex != -1) {
@@ -235,19 +235,19 @@ public class ArrayListRunner  {
 	@SuppressWarnings("unchecked")
 	public <T> void addStringByIndex() throws CustomException {
 		List<T> arrayList1 = task.createList();
-		int stringCount1 = util.UtilGetInput.getIntInput("Enter the Number of strings to add: ");
+		int stringCount1 = UtilGetInput.getIntInput("Enter the Number of strings to add: ");
 		T[] stringArray1 = (T[]) getArray(stringCount1 , String.class);
 		task.addElementsToList(arrayList1 , stringArray1);
-		int addIndex = util.UtilGetInput.getIntInput("Enter the index to add the strings: ");
-		String stringInput = util.UtilGetInput.getStringInput("Enter the string to add in the " + addIndex + " index of arraylist: ");
+		int addIndex = UtilGetInput.getIntInput("Enter the index to add the strings: ");
+		String stringInput = UtilGetInput.getStringInput("Enter the string to add in the " + addIndex + " index of arraylist: ");
 		task.addStringInIndex(arrayList1, stringInput, addIndex);
 		printSizeAndList(arrayList1);
 	}
 	
 	public <T> void createSublist() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		int startIndex = util.UtilGetInput.getIntInput("Enter the start index to create a subarraylist: ");
-		int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create a subarraylist: ");
+		int startIndex = UtilGetInput.getIntInput("Enter the start index to create a subarraylist: ");
+		int endIndex = UtilGetInput.getIntInput("Enter the end index to create a subarraylist: ");
 		List<?> arrayList2 = task.createSubArrayList(arrayList1, startIndex, endIndex);
 		printSizeAndList(arrayList1);
 		printSizeAndList(arrayList2);
@@ -292,17 +292,17 @@ public class ArrayListRunner  {
 	@SuppressWarnings("unchecked")
 	public <T> void arrayListOfDecimal() throws CustomException {
 		List<T> arrayList1 = task.createList();
-		int decimalCount = util.UtilGetInput.getIntInput("Enter the No. of decimal values need to be added: ");
+		int decimalCount = UtilGetInput.getIntInput("Enter the No. of decimal values need to be added: ");
 		T[] doubleArray1 = (T[]) getArray(decimalCount , Double.class);
 		task.addElementsToList(arrayList1, doubleArray1);
-		int doubleIndex = util.UtilGetInput.getIntInput("Enter the index of decimal value needs to be removed: ");
+		int doubleIndex = UtilGetInput.getIntInput("Enter the index of decimal value needs to be removed: ");
 		task.deleteElementByIndex(arrayList1 , doubleIndex);
 		printSizeAndList(arrayList1);
 	}
 	
 	public <T> void removeAllFromLists() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
-		int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
+		int endIndex = UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
 		List<?> arrayList2 = task.createSubArrayList(arrayList1, 0 , endIndex);
 		task.deleteSubList(arrayList1, arrayList2);
 		printSizeAndList(arrayList1);
@@ -312,13 +312,13 @@ public class ArrayListRunner  {
 	public <T> void retainAllFromLists() throws CustomException {
 		try {
 			List<T> arrayList1 = null; //createArrayListWithStrings();
-			int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
+			int endIndex = UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
 			List<?> arrayList2 = task.createSubArrayList(arrayList1, 0 , endIndex);
 			task.retainSubList(arrayList1, arrayList2);
 			printSizeAndList(arrayList1);
 			printSizeAndList(arrayList2);
 		} catch (CustomException e) {
-			e.addAdditionalMessage("Something went Wrong!");
+			e.addSuppressed(new CustomException("Something went Wrong!"));
 			throw e;
 		}
 	}
@@ -326,7 +326,7 @@ public class ArrayListRunner  {
 	@SuppressWarnings("unchecked")
 	public <T> void removeLongValues() throws CustomException {
 		List<T> arrayList1 = task.createList();
-		int longCount = util.UtilGetInput.getIntInput("Enter the Number of long values to add: ");
+		int longCount = UtilGetInput.getIntInput("Enter the Number of long values to add: ");
 		T[] longArray = (T[]) getArray(longCount , Long.class);
 		task.addElementsToList(arrayList1, longArray);
 		printSizeAndList(arrayList1);
@@ -340,30 +340,30 @@ public class ArrayListRunner  {
 		String inputString = util.UtilGetInput.getStringInput("Enter the String to check availability in the list: ");
 		Boolean availability = task.checkPresence(arrayList1 , inputString);
 		if (availability == true) {
-			util.UtilPrintOutput.printOutput("Yes, " + inputString + " is available in the created list");
+			UtilPrintOutput.printOutput("Yes, " + inputString + " is available in the created list");
 		} else {
-			util.UtilPrintOutput.printOutput("No, " + inputString + " is not available in the created list");
+			UtilPrintOutput.printOutput("No, " + inputString + " is not available in the created list");
 		}
 	}
 	
 	public void printSizeAndList(List<?> list) throws CustomException {
-		util.UtilPrintOutput.printOutput("The ArrayList is: " + list);
-		util.UtilPrintOutput.printOutput("The size of the list is: " + task.getSize(list));
+		UtilPrintOutput.printOutput("The ArrayList is: " + list);
+		UtilPrintOutput.printOutput("The size of the list is: " + task.getSize(list));
 	}
 	
 	@SuppressWarnings("unchecked")
 	private <T> void printByIterator(List<T> arraylist1) {
-		util.UtilPrintOutput.printOutput("Using Iterator to print elements:");
+		UtilPrintOutput.printOutput("Using Iterator to print elements:");
 		Iterator<String> iterator = (Iterator<String>) arraylist1.iterator();
 		while (iterator.hasNext()) {
-			util.UtilPrintOutput.printOutput(iterator.next());
+			UtilPrintOutput.printOutput(iterator.next());
 		}
 	}
 	
 	private <T> void printByForloop(List<T> arrayList1) {
-		util.UtilPrintOutput.printOutput("Using for loop to print elements:");
+		UtilPrintOutput.printOutput("Using for loop to print elements:");
 	    for (T element : arrayList1) {
-	    	util.UtilPrintOutput.printOutput((String) element);
+	    	UtilPrintOutput.printOutput((String) element);
 	    }
 	}
 	

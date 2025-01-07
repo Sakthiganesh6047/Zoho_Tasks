@@ -1,10 +1,7 @@
 package exception;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CustomException extends Exception {
-	private List<String> additionalMessages = new ArrayList<>();
+	private static final long serialVersionUID = 1L;
 
 	public CustomException(String message) {
 		super(message);
@@ -14,16 +11,23 @@ public class CustomException extends Exception {
 		super(message , cause);
 	}
 	
-	public void addAdditionalMessage(String message) {
-        additionalMessages.add(message);
+	public String getMessage() {
+        StringBuilder message = new StringBuilder(super.getMessage());
+        for (Throwable suppressed : getSuppressed()) {
+            message.append(" | ").append(suppressed.getMessage());
+        }
+        return message.toString();
     }
 	
-	public String getMessage() {
+	/*public String getMessage() {
         String combinedMessages = super.getMessage();
         for (String message : additionalMessages) {
             combinedMessages += " | " + message;
         }
         return combinedMessages;
     }
-
+	
+	public void addAdditionalMessage(String message) {
+        additionalMessages.add(message);
+    }*/
 }
