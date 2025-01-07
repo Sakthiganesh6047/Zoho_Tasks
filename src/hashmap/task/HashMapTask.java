@@ -16,7 +16,7 @@ public class HashMapTask {
 			checkMapValidity(hashmap);
 			return hashmap.size();
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the size"));
+			e.appendMessage("Failed to get the size");
 			throw e;
 		}
 	}
@@ -26,7 +26,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        map.put(key, value);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to add the values"));
+			e.appendMessage("Failed to add the values");
 			throw e;
 		}
     }
@@ -36,7 +36,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        return map.containsKey(key);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to check the existence of the key"));
+			e.appendMessage("Failed to check the existence of the key");
 			throw e;
 		}
     }
@@ -46,7 +46,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 	        return map.containsValue(value);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to check the existence of the values"));
+			e.appendMessage("Failed to check the existence of the values");
 			throw e;
 		}
 	}
@@ -60,7 +60,7 @@ public class HashMapTask {
 	        keySet.toArray(keysArray);
 	        return keysArray;
     	} catch (CustomException e) {
-    		e.addSuppressed(new CustomException("Failed to extract the keys to an Array"));
+    		e.appendMessage("Failed to extract the keys to an Array");
 			throw e;
 		}
 	}
@@ -70,7 +70,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.put(keyToAlter, newValue);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to update the HashMap"));
+			e.appendMessage("Failed to update the HashMap");
 			throw e;
 		}
 	}
@@ -80,7 +80,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			return map.get(keyToSearch);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the value of entered key"));
+			e.appendMessage("Failed to get the value of entered key");
 			throw e;
 		}
 	}
@@ -90,7 +90,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			return map.getOrDefault(keyToSearch , defaultValue);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to get the value of entered key"));
+			e.appendMessage("Failed to get the value of entered key");
 			throw e;
 		}
 	}
@@ -100,7 +100,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.remove(keyToRemove);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to remove the key"));
+			e.appendMessage("Failed to remove the key");
 			throw e;
 		}
 	}
@@ -110,7 +110,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.remove(keyToRemove, checkValue);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to remove key"));
+			e.appendMessage("Failed to remove key");
 			throw e;
 		}
 	}
@@ -120,7 +120,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.replace(replaceKey, replaceValue);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to replace List"));
+			e.appendMessage("Failed to replace List");
 			throw e;
 		}
 	}
@@ -130,7 +130,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.replace(replaceKey , checkValue , replaceValue);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to replace key"));
+			e.appendMessage("Failed to replace key");
 			throw e;
 		}
 	}
@@ -141,7 +141,7 @@ public class HashMapTask {
 			checkMapValidity(map2);
 			map2.putAll(map1);
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to transfer values"));
+			e.appendMessage("Failed to transfer values");
 			throw e;
 		}
 	}
@@ -151,7 +151,7 @@ public class HashMapTask {
 			checkMapValidity(map);
 			map.clear();
 		} catch (CustomException e) {
-			e.addSuppressed(new CustomException("Failed to remove entries."));
+			e.appendMessage("Failed to remove entries.");
 			throw e;
 		}
 	}

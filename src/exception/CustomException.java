@@ -27,24 +27,4 @@ public class CustomException extends Exception {
 	        return super.getMessage() + " | " + additionalMessages.toString();
 	    }
 	}
-	
-	/*public String getMessage() {
-        StringBuilder message = new StringBuilder(super.getMessage());
-        for (Throwable suppressed : getSuppressed()) {
-            message.append(" | ").append(suppressed.getMessage());
-        }
-        return message.toString();
-    }
-	
-	public String getMessage() {
-        String combinedMessages = super.getMessage();
-        for (String message : additionalMessages) {
-            combinedMessages += " | " + message;
-        }
-        return combinedMessages;
-    }
-	
-	public void addAdditionalMessage(String message) {
-        additionalMessages.add(message);
-    }*/
 }
