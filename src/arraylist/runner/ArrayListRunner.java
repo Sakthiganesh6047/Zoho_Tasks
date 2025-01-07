@@ -135,8 +135,6 @@ public class ArrayListRunner  {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				/*UtilPrintOutput.printOutput("Exception: " + e.getMessage());
-				UtilPrintOutput.printOutput("Cause: " + e.getCause());*/
 			}
 		}
 		while (enteredChoice != 0);
@@ -312,12 +310,17 @@ public class ArrayListRunner  {
 	}
 	
 	public <T> void retainAllFromLists() throws CustomException {
-		List<T> arrayList1 = null; //createArrayListWithStrings();
-		int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
-		List<?> arrayList2 = task.createSubArrayList(arrayList1, 0 , endIndex);
-		task.retainSubList(arrayList1, arrayList2);
-		printSizeAndList(arrayList1);
-		printSizeAndList(arrayList2);
+		try {
+			List<T> arrayList1 = null; //createArrayListWithStrings();
+			int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
+			List<?> arrayList2 = task.createSubArrayList(arrayList1, 0 , endIndex);
+			task.retainSubList(arrayList1, arrayList2);
+			printSizeAndList(arrayList1);
+			printSizeAndList(arrayList2);
+		} catch (CustomException e) {
+			e.addAdditionalMessage("Something went Wrong!");
+			throw e;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

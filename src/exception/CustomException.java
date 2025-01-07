@@ -1,7 +1,10 @@
 package exception;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomException extends Exception {
-	private String additionalMessage;
+	private List<String> additionalMessages = new ArrayList<>();
 
 	public CustomException(String message) {
 		super(message);
@@ -11,15 +14,16 @@ public class CustomException extends Exception {
 		super(message , cause);
 	}
 	
-	public void setAdditionalMessage(String additionalMessage) {
-        this.additionalMessage = additionalMessage;
+	public void addAdditionalMessage(String message) {
+        additionalMessages.add(message);
     }
 	
 	public String getMessage() {
-	    if (additionalMessage == null) {
-	        return super.getMessage();
-	    }
-	    return additionalMessage + " because " + super.getMessage();
-	}
+        String combinedMessages = super.getMessage();
+        for (String message : additionalMessages) {
+            combinedMessages += " | " + message;
+        }
+        return combinedMessages;
+    }
 
 }

@@ -137,7 +137,7 @@ public class HashMapRunner {
 					break;
 					
 				case 0:
-					util.UtilPrintOutput.printOutput("Terminated Successfully!");
+					UtilPrintOutput.printOutput("Terminated Successfully!");
 					break;
 				}
 			} catch (Exception e) {
@@ -176,7 +176,7 @@ public class HashMapRunner {
 			String objName = UtilGetInput.getStringInput("Enter the " + (i+1) + " object name: ");
 			int objValue = UtilGetInput.getIntInput("Enter the object " + (i+1) + " value: ");
 			CustomObj object = new CustomObj(objName , objValue);
-			task.addCustomObject(hashMap1 , key , object);
+			task.addKeyValuePair(hashMap1 , key , (V) object);
 		}
 		printMapAndSize(hashMap1);
 	}
@@ -221,7 +221,6 @@ public class HashMapRunner {
 			util.UtilPrintOutput.printOutput("No, " + checkKey + " not exists in the HashMap.");
 		}
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	public <K,V> void totalAlterInHashMap() throws CustomException {
