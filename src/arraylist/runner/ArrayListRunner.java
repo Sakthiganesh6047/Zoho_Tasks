@@ -312,7 +312,7 @@ public class ArrayListRunner  {
 	}
 	
 	public <T> void retainAllFromLists() throws CustomException {
-		List<T> arrayList1 = createArrayListWithStrings();
+		List<T> arrayList1 = null; //createArrayListWithStrings();
 		int endIndex = util.UtilGetInput.getIntInput("Enter the end index to create the second arraylist: ");
 		List<?> arrayList2 = task.createSubArrayList(arrayList1, 0 , endIndex);
 		task.retainSubList(arrayList1, arrayList2);
