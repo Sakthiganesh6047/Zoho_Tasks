@@ -3,13 +3,9 @@ package arraylist.task;
 import java.util.ArrayList;
 import java.util.List;
 import exception.CustomException;
+import util.UtilValidator;
 
 public class ArrayListTask {
-	//exception propagation without chaining	done
-	//remove all values not working				done
-	// println to file							done
-	//null check for addElementsToList			done
-	//addCustomObject							done
 
     public <T> List<T> createList() {
         return new ArrayList<>();
@@ -17,8 +13,8 @@ public class ArrayListTask {
 	
 	public <T> List<T> addElementsToList(List<T> list, T[] elements) throws CustomException {
 		try {
-			checkArrayValidity(elements);
-			checkListValidity(list);
+			UtilValidator.isNull(elements);
+			UtilValidator.isNull(list);
 		    for (T element : elements) {
 		        list.add(element);
 		    }
@@ -32,7 +28,7 @@ public class ArrayListTask {
 	@SuppressWarnings("unchecked")
 	public <T> List<T> addStringInIndex(List<T> list , String inputString , int addIndex) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			if (addIndex < 0 || addIndex > list.size()) {
 				throw new CustomException("Index to add is greater than the size of the list.");
 				}
@@ -46,7 +42,7 @@ public class ArrayListTask {
 	
 	public <T> List<T> addCustomObject(List<T> list , T object) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			list.add(object);
 			return list;	
 		} catch (CustomException e) {
@@ -57,7 +53,7 @@ public class ArrayListTask {
 	
 	public int firstOccurenceOfString(List<?> list , String stringToFind) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			return list.indexOf(stringToFind);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get the first occurence of the List");
@@ -67,7 +63,7 @@ public class ArrayListTask {
 	
 	public int lastOccurenceOfString(List<?> list , String stringToFind) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			return list.lastIndexOf(stringToFind);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get the last occurence of the List");
@@ -77,7 +73,7 @@ public class ArrayListTask {
 	
 	public <T> T getByIndex(List<T> list , int stringIndex) throws CustomException {
 		try {
-		checkListValidity(list);
+			UtilValidator.isNull(list);
 		if (stringIndex < 0 || stringIndex >= list.size()) {
 			throw new CustomException("Index is greater than the size of Arraylist.");
 		}
@@ -90,11 +86,11 @@ public class ArrayListTask {
 	
 	public List<?> createSubArrayList(List<?> list , int startIndex , int endIndex) throws CustomException {
 		try {
-		checkListValidity(list);
+			UtilValidator.isNull(list);
 		if (startIndex < 0 || endIndex < 0 || startIndex > endIndex || endIndex > list.size()) {
 			throw new CustomException("startindex or endindex is greater than the size of Arraylist.");
 		}
-		return new ArrayList<>(list.subList(startIndex, endIndex));
+			return new ArrayList<>(list.subList(startIndex, endIndex));
 		} catch (CustomException e) {
 			e.appendMessage("Failed to create sub arrayList");
 			throw e;
@@ -103,8 +99,8 @@ public class ArrayListTask {
 	
 	public <T> List<?> combinedList(List<T> list1, List<T> list2) throws CustomException {
 		try {
-			checkListValidity(list1);
-			checkListValidity(list2);
+			UtilValidator.isNull(list1);
+			UtilValidator.isNull(list2);
 			ArrayList<T> list3 = new ArrayList<>(list1);
 			list3.addAll(list2);
 			return list3;
@@ -116,7 +112,7 @@ public class ArrayListTask {
 	
 	public List<?> deleteElementByIndex(List<?> list , int delIndex) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			if (delIndex < 0 || delIndex >= list.size()) {
 				throw new CustomException("Delete index is greater than the size of the Arraylist.");
 			}
@@ -130,7 +126,7 @@ public class ArrayListTask {
 	
 	public void deleteList(List<?> list) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			list.clear();
 			//list = null; 	null not clearing the list
 		} catch (CustomException e) {
@@ -141,7 +137,7 @@ public class ArrayListTask {
 	
 	public Boolean checkPresence(List<?> list , String searchString) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			return list.contains(searchString);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to check the presence of the string in the List");
@@ -151,8 +147,8 @@ public class ArrayListTask {
 	
 	public List<?> deleteSubList(List<?> list1 , List<?> list2) throws CustomException {
 		try {
-			checkListValidity(list1);
-			checkListValidity(list2);
+			UtilValidator.isNull(list1);
+			UtilValidator.isNull(list2);
 			list1.removeAll(list2);
 			return list1;
 		} catch (CustomException e) {
@@ -163,8 +159,8 @@ public class ArrayListTask {
 	
 	public List<?> retainSubList(List<?> list1 , List<?> list2) throws CustomException {
 		try {
-			checkListValidity(list1);
-			checkListValidity(list2);
+			UtilValidator.isNull(list1);
+			UtilValidator.isNull(list2);
 			list1.retainAll(list2);
 			return list1;
 		} catch (CustomException e) {
@@ -175,23 +171,11 @@ public class ArrayListTask {
 
 	public int getSize(List<?> list) throws CustomException {
 		try {
-			checkListValidity(list);
+			UtilValidator.isNull(list);
 			return list.size();
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get size");
 			throw e;
-		}
-	}
-	
-	private void checkListValidity(List<?> list) throws CustomException {
-		if (list == null) {
-			throw new CustomException("List can't be null");
-		}
-	}
-	
-	private <T> void checkArrayValidity(T array) throws CustomException {
-		if (array == null) {
-			throw new CustomException("Array can't be null");
 		}
 	}
 }

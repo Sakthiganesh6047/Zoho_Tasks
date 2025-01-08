@@ -13,4 +13,8 @@ public class UtilPrintOutput {
 	public static void printOutput(int value){
 		System.out.println(value);
 	}
+	
+	public static void printOutput(Boolean value) {
+		System.out.println(value);
+	}
 }

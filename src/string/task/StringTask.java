@@ -2,14 +2,14 @@ package string.task;
 
 import java.util.*;
 import util.UtilGetInput;
+import util.UtilValidator;
 import exception.CustomException;
-import string.validator.StringValidator;
 
 public class StringTask {
 
     public int getLength(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+            UtilValidator.isNull(inputString);
             return inputString.length();
         } catch (Exception e) {
             throw new CustomException("Failed to get string length", e);
@@ -18,7 +18,7 @@ public class StringTask {
 
     public char[] convertCharArray(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             return inputString.toCharArray();
         } catch (Exception e) {
             throw new CustomException("Failed to convert string to char array", e);
@@ -27,7 +27,8 @@ public class StringTask {
 
     public char getPenultimateChar(String inputString, int indexFromEnd) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.emptyCheck(inputString);
             if (indexFromEnd <= 0 || inputString.length() < indexFromEnd) {
                 throw new CustomException("Invalid index for penultimate character");
             }
@@ -39,7 +40,7 @@ public class StringTask {
 
     public int getCharOccurrence(String inputString, char charInput) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             int charCount = 0;
             for (int i = 0; i < inputString.length(); i++) {
                 if (inputString.charAt(i) == charInput) {
@@ -54,7 +55,7 @@ public class StringTask {
 
     public int getGreatestPosition(String inputString, char charInput) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             return inputString.lastIndexOf(charInput);
         } catch (Exception e) {
             throw new CustomException("Failed to get greatest position of character", e);
@@ -63,7 +64,8 @@ public class StringTask {
 
     public String getLastNChar(String inputString, int endCharLength) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.emptyCheck(inputString);
 			
             if (endCharLength <= 0 || inputString.length() < endCharLength) {
                 throw new CustomException("Invalid length for substring");
@@ -77,7 +79,8 @@ public class StringTask {
 
     public String getFirstNChar(String inputString, int startCharLength) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.emptyCheck(inputString);
 			
             if (startCharLength <= 0 || inputString.length() < startCharLength) {
                 throw new CustomException("Invalid length for substring");
@@ -91,8 +94,9 @@ public class StringTask {
 
     public String replaceSubstring(String inputString, String replacement, int replaceLength) throws CustomException {
 		try {
-			StringValidator.checkNullOrEmpty(inputString);
-			StringValidator.checkNullOrEmpty(replacement);
+			UtilValidator.isNull(inputString);
+			UtilValidator.isNull(replacement);
+			UtilValidator.isNull(inputString);
 
 			if (replaceLength < 0 || inputString.length() < replaceLength) {
 				throw new CustomException("Invalid length to replace");
@@ -121,8 +125,8 @@ public class StringTask {
 
     public Boolean compareStartChars(String inputString, String startChars) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
-            StringValidator.checkNullOrEmpty(startChars);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.isNull(startChars);
             return inputString.startsWith(startChars);
         } catch (Exception e) {
             throw new CustomException("Failed to compare start characters", e);
@@ -131,8 +135,8 @@ public class StringTask {
 
     public Boolean compareEndChars(String inputString, String endChars) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
-            StringValidator.checkNullOrEmpty(endChars);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.isNull(endChars);
             return inputString.endsWith(endChars);
         } catch (Exception e) {
             throw new CustomException("Failed to compare end characters", e);
@@ -141,7 +145,7 @@ public class StringTask {
 
     public String convertingToUpperCase(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             return inputString.toUpperCase();
         } catch (Exception e) {
             throw new CustomException("Failed to convert to uppercase", e);
@@ -150,7 +154,7 @@ public class StringTask {
 
     public String convertingToLowerCase(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             return inputString.toLowerCase();
         } catch (Exception e) {
             throw new CustomException("Failed to convert to lowercase", e);
@@ -159,7 +163,7 @@ public class StringTask {
 
     public String reversingString(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             char[] reverseList = inputString.toCharArray();
             int left = 0, right = reverseList.length - 1;
             while (left < right) {
@@ -177,8 +181,8 @@ public class StringTask {
 
     public String concatenateMultipleStrings(String inputString, String splitChar) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
-            StringValidator.checkNullOrEmpty(splitChar);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.isNull(splitChar);
             return inputString.replace(splitChar, "");
         } catch (Exception e) {
             throw new CustomException("Failed to concatenate strings", e);
@@ -187,8 +191,8 @@ public class StringTask {
 
     public String[] encloseInArray(String inputString, String splitChars) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
-            StringValidator.checkNullOrEmpty(splitChars);
+        	UtilValidator.isNull(inputString);
+        	UtilValidator.isNull(splitChars);
             return inputString.split(splitChars);
         } catch (Exception e) {
             throw new CustomException("Failed to enclose in array", e);
@@ -196,16 +200,18 @@ public class StringTask {
     }
 
     public String mergeStringWithSymbol(List<String> inputStrings, CharSequence joiningChar) throws CustomException {
-		if (inputStrings == null || inputStrings.isEmpty()) {
-			throw new CustomException("List can't be null or empty");
-		}
-		return String.join(joiningChar, inputStrings);
+    	try {
+	    	UtilValidator.isNull(inputStrings);
+			return String.join(joiningChar, inputStrings);
+    	} catch (CustomException e) {
+    		throw new CustomException("Failed to enclose in array", e);
+    	}
     }
 
     public Boolean areStringsCaseEqual(String string1, String string2) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(string1);
-            StringValidator.checkNullOrEmpty(string2);
+        	UtilValidator.isNull(string1);
+        	UtilValidator.isNull(string2);
             return string1.equals(string2);
         } catch (Exception e) {
             throw new CustomException("Failed to compare strings (case-sensitive)", e);
@@ -214,8 +220,8 @@ public class StringTask {
 
     public Boolean areStringsIgnoreCaseEqual(String string1, String string2) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(string1);
-            StringValidator.checkNullOrEmpty(string2);
+        	UtilValidator.isNull(string1);
+        	UtilValidator.isNull(string2);
             return string1.equalsIgnoreCase(string2);
         } catch (Exception e) {
             throw new CustomException("Failed to compare strings (ignore case)", e);
@@ -224,7 +230,7 @@ public class StringTask {
 
     public String trimString(String inputString) throws CustomException {
         try {
-            StringValidator.checkNullOrEmpty(inputString);
+        	UtilValidator.isNull(inputString);
             return inputString.trim();
         } catch (Exception e) {
             throw new CustomException("Failed to trim string", e);

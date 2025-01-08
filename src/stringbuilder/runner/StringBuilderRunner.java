@@ -1,19 +1,21 @@
 package stringbuilder.runner;
 
 import stringbuilder.task.StringBuilderTask;
+import util.UtilGetInput;
+import util.UtilPrintOutput;
 import exception.CustomException;
 import java.util.*;
 
 public class StringBuilderRunner {
     static Scanner scanner = new Scanner(System.in);
-    StringBuilderTask task = new StringBuilderTask();  // Instance of StringBuilderTask
+    StringBuilderTask task = new StringBuilderTask(); 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CustomException {
         StringBuilderRunner runner = new StringBuilderRunner();
         runner.runOperations();
     }
 
-    private void runOperations() {
+    private void runOperations() throws CustomException {
         int enteredChoice = 0;
 
         do {
@@ -31,10 +33,10 @@ public class StringBuilderRunner {
             System.out.println("10. Create a StringBuilder and find the last separator index");
             System.out.println("0. Exit");
 
-            enteredChoice = getIntInput("Enter a choice from 0 to 10: ");
+            enteredChoice = UtilGetInput.getIntInput("Enter a choice from 0 to 10: ");
 
             if (enteredChoice < 0 || enteredChoice > 10) {
-                printOutput("Invalid Choice, Enter a choice from 0 to 10");
+                UtilPrintOutput.printOutput("Invalid Choice, Enter a choice from 0 to 10");
             }
 
             switch (enteredChoice) {
@@ -69,13 +71,112 @@ public class StringBuilderRunner {
                 	firstSeparatorIndex();
                     break;
                 case 0:
-                    printOutput("Terminated successfully");
+                	UtilPrintOutput.printOutput("Terminated successfully");
                     break;
             }
         } while (enteredChoice != 0);
     }
 
-    public static String[] getStringInput() {
+    public void createAndAddStringsToIt() throws CustomException {
+        String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
+        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        String[] addStringsInput = getStringInput();
+        task.addToStringBuilder(addStringsInput, createdSB, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void addStringsWithSeparator() throws CustomException {
+        String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
+        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        String[] addStringsInput = getStringInput();
+        task.addToStringBuilder(addStringsInput, createdSB, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void insertAnotherString() throws CustomException {
+        String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
+        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+        String[] insertStrings = getStringInput();
+        int insertAfterNo = UtilGetInput.getIntInput("Enter the index of the existing string to insert these strings: ");
+        task.insertToStringBuilder(insertStrings, stringBuilderInput, createdSB, separator, insertAfterNo);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void deleteStrings() throws CustomException {
+        String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
+        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+        int delStringIndex = getDeleteStringIndex(createdSB, separator);
+        try { 
+        	createdSB = task.deleteStringsInSB(createdSB, delStringIndex, separator);
+        } catch (CustomException e) {
+    		e.printStackTrace();
+        }
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void replaceSeparator() throws CustomException {
+        String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
+        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        String newSeparator = UtilGetInput.getStringInput("Enter the replacement separator: ");
+        createdSB = task.replaceSeperator(createdSB, separator, newSeparator);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void reverseStringBuilder() throws CustomException {
+        StringBuilder createdSB = completeStringBuilder();
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+        createdSB = task.reversingString(createdSB);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void deleteCharacters() throws CustomException {
+        StringBuilder createdSB = completeStringBuilder();
+        int startCharIndex = UtilGetInput.getIntInput("Enter the starting char index to delete: ");
+        int endCharIndex = UtilGetInput.getIntInput("Enter the ending char index to delete: ");
+        try {
+        	createdSB = task.deleteCharsInSB(createdSB, startCharIndex, endCharIndex);
+        } catch (CustomException e) {
+        	e.printStackTrace();
+        }
+        
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void replaceCharacters() throws CustomException {
+        StringBuilder createdSB = completeStringBuilder();
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        String replacementString = UtilGetInput.getStringInput("Enter the replacement string: ");
+        int startCharIndex = UtilGetInput.getIntInput("Enter the starting char index to substitute the string: ");
+        int endCharIndex = UtilGetInput.getIntInput("Enter the ending char index to substitute the string: ");
+        createdSB = task.replaceChars(createdSB, replacementString, startCharIndex, endCharIndex);
+        UtilPrintOutput.printOutput(task.getLength(createdSB));
+        UtilPrintOutput.printOutput(task.getFinalString(createdSB));
+    }
+
+    public void firstSeparatorIndex() throws CustomException {
+        StringBuilder createdSB = completeStringBuilder();
+    }
+    
+    private static String[] getStringInput() {
         System.out.print("Enter the number of strings you want to input: ");
         int numStrings = scanner.nextInt();
         scanner.nextLine();  // Consume the newline character
@@ -87,152 +188,20 @@ public class StringBuilderRunner {
         return strings;
     }
 
-    public static int getIntInput(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            try {
-                return Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                printOutput("Invalid input, please enter a valid integer.");
-            }
-        }
-    }
-
-    public static String getSeparator() {
-        System.out.print("Enter the character to separate strings: ");
-        return scanner.nextLine();
-    }
-
-    public static String getString(String prompt) {
-        System.out.print(prompt);
-        return scanner.nextLine();
-    }
-
-    public int getDeleteStringIndex(StringBuilder createdSB, String separator) {
-        printOutput("The Available Strings are: ");
+    private int getDeleteStringIndex(StringBuilder createdSB, String separator) throws CustomException {
+    	UtilPrintOutput.printOutput("The Available Strings are: ");
         String[] splittedArray = task.splitStringBuilder(createdSB, separator);
         for (int i = 0; i < splittedArray.length; i++) {
-            printOutput((i + 1) + ". " + splittedArray[i]);
+        	UtilPrintOutput.printOutput((i + 1) + ". " + splittedArray[i]);
         }
-        return getIntInput("Enter the index of the string you want to delete: ");
+        return UtilGetInput.getIntInput("Enter the index of the string you want to delete: ");
     }
-
-    public static void printOutput(String value) {
-        System.out.println(value);
-    }
-
-    public static void printOutput(int value) {
-        System.out.println(value);
-    }
-
-    // Remove `StringBuilderTask task` from parameters and use the instance directly
-    public void createAndAddStringsToIt() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
+    
+    private StringBuilder completeStringBuilder() throws CustomException {
+    	String[] stringBuilderInput = getStringInput();
+        String separator = UtilGetInput.getStringInput("Enter the separator: ");
         StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        printOutput(task.getLength(createdSB));
-        String[] addStringsInput = getStringInput();
-        task.addToStringBuilder(addStringsInput, createdSB, separator);
-
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void addStringsWithSeparator() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        printOutput(task.getLength(createdSB));
-        String[] addStringsInput = getStringInput();
-        task.addToStringBuilder(addStringsInput, createdSB, separator);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void insertAnotherString() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-        String[] insertStrings = getStringInput();
-        int insertAfterNo = getIntInput("Enter the index of the existing string to insert these strings: ");
-        task.insertToStringBuilder(insertStrings, stringBuilderInput, createdSB, separator, insertAfterNo);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void deleteStrings() {
-	        String[] stringBuilderInput = getStringInput();
-	        String separator = getSeparator();
-	        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-	        printOutput(task.getLength(createdSB));
-	        printOutput(task.getFinalString(createdSB));
-	        int delStringIndex = getDeleteStringIndex(createdSB, separator);
-	        try { 
-	        createdSB = task.deleteStringsInSB(createdSB, delStringIndex, separator);
-	        }
-	        catch (CustomException e) {
-	    		e.printStackTrace();
-	        }
-	        printOutput(task.getLength(createdSB));
-	        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void replaceSeparator() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        String newSeparator = getString("Enter the replacement separator: ");
-        createdSB = task.replaceSeperator(createdSB, separator, newSeparator);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void reverseStringBuilder() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-        createdSB = task.reversingString(createdSB);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void deleteCharacters() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        int startCharIndex = getIntInput("Enter the starting char index to delete: ");
-        int endCharIndex = getIntInput("Enter the ending char index to delete: ");
-        try {
-        createdSB = task.deleteCharsInSB(createdSB, startCharIndex, endCharIndex);
-        } catch (CustomException e) {
-        	e.printStackTrace();
-        }
-        
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void replaceCharacters() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
-        printOutput(task.getLength(createdSB));
-        String replacementString = getString("Enter the replacement string: ");
-        int startCharIndex = getIntInput("Enter the starting char index to substitute the string: ");
-        int endCharIndex = getIntInput("Enter the ending char index to substitute the string: ");
-        createdSB = task.replaceChars(createdSB, replacementString, startCharIndex, endCharIndex);
-        printOutput(task.getLength(createdSB));
-        printOutput(task.getFinalString(createdSB));
-    }
-
-    public void firstSeparatorIndex() {
-        String[] stringBuilderInput = getStringInput();
-        String separator = getSeparator();
-        StringBuilder createdSB = task.createStringBuilder(stringBuilderInput, separator);
+        return createdSB;
     }
 }
        

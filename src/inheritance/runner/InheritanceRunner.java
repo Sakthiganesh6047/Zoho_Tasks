@@ -1,17 +1,18 @@
 package inheritance.runner;
 
+import exception.CustomException;
 import inheritance.task.*;
 import util.UtilGetInput;
 import util.UtilPrintOutput;
 
 public class InheritanceRunner{
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws CustomException {
 		InheritanceRunner runner = new InheritanceRunner();
 		runner.runOperations();
 	}
 	
-	private void runOperations(){
+	private void runOperations() throws CustomException  {
 		
 		int enteredchoice = 0;
 		Boolean condition = true;
@@ -79,7 +80,7 @@ public class InheritanceRunner{
 	
 	}
 	
-	public void callSwiftClass(){
+	public void callSwiftClass() throws CustomException{
 		Swift swift = new Swift();
 		
 		int noofseats = UtilGetInput.getIntInput("Enter no. of Seats: ");
@@ -99,7 +100,7 @@ public class InheritanceRunner{
 		UtilPrintOutput.printOutput("The color of the car is "  + swift.getCarColor());
 	}
 	
-	public void callingusingScross(){
+	public void callingusingScross() throws CustomException{
 		SCross scross = new SCross();
 		
 		int noofseats = UtilGetInput.getIntInput("Enter no. of Seats: ");

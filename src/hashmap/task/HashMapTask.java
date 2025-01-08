@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import exception.CustomException;
+import util.UtilValidator;
 
 public class HashMapTask {
 	
@@ -13,7 +14,7 @@ public class HashMapTask {
 	
 	public int getSize(Map<?,?> hashmap) throws CustomException {
 		try {
-			checkMapValidity(hashmap);
+			UtilValidator.isNull(hashmap);
 			return hashmap.size();
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get the size");
@@ -23,7 +24,7 @@ public class HashMapTask {
 	
 	public <K,V> void addKeyValuePair(Map<K,V> map, K key, V value) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 	        map.put(key, value);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to add the values");
@@ -33,7 +34,7 @@ public class HashMapTask {
 	
 	public <K,V> boolean checkKeyExists(Map<K,V> map, K key) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 	        return map.containsKey(key);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to check the existence of the key");
@@ -43,7 +44,7 @@ public class HashMapTask {
 	
 	public <K,V> boolean checkValueExists(Map<K,V> map, V value) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 	        return map.containsValue(value);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to check the existence of the values");
@@ -54,7 +55,7 @@ public class HashMapTask {
     @SuppressWarnings("unchecked")
 	public <K,V> K[] extractKeysToArray(Map<K,V> map) throws CustomException {
     	try {
-			checkMapValidity(map);
+    		UtilValidator.isNull(map);
 	        Set<K> keySet = map.keySet();
 			K[] keysArray = (K[]) new String[keySet.size()];  
 	        keySet.toArray(keysArray);
@@ -67,7 +68,7 @@ public class HashMapTask {
 	
 	public <K,V> void updateHashMap(Map<K,V> map , K keyToAlter , V newValue) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.put(keyToAlter, newValue);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to update the HashMap");
@@ -77,7 +78,7 @@ public class HashMapTask {
 	
 	public <K,V> V getKeyValue(Map<K,V> map , K keyToSearch) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			return map.get(keyToSearch);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get the value of entered key");
@@ -87,7 +88,7 @@ public class HashMapTask {
 	
 	public <K,V> V getKeyValueOrDefault(Map<K,V> map , K keyToSearch , V defaultValue) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			return map.getOrDefault(keyToSearch , defaultValue);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to get the value of entered key");
@@ -97,7 +98,7 @@ public class HashMapTask {
 	
 	public <K,V> void removeKey(Map<K,V> map , K keyToRemove) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.remove(keyToRemove);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to remove the key");
@@ -107,7 +108,7 @@ public class HashMapTask {
 	
 	public <K,V> void removeKeyIfValueMatches(Map<K,V> map , K keyToRemove , V checkValue) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.remove(keyToRemove, checkValue);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to remove key");
@@ -117,7 +118,7 @@ public class HashMapTask {
 	
 	public <K,V> void replaceKey(Map<K,V> map , K replaceKey , V replaceValue) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.replace(replaceKey, replaceValue);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to replace List");
@@ -127,7 +128,7 @@ public class HashMapTask {
 	
 	public <K,V> void replaceKeyIfValueMatches(Map<K,V> map , K replaceKey , V checkValue , V replaceValue) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.replace(replaceKey , checkValue , replaceValue);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to replace key");
@@ -137,8 +138,8 @@ public class HashMapTask {
 	
 	public <K,V> void transferValues(Map<K,V> map1 , Map<K,V> map2) throws CustomException {
 		try {
-			checkMapValidity(map1);
-			checkMapValidity(map2);
+			UtilValidator.isNull(map1);
+			UtilValidator.isNull(map2);
 			map2.putAll(map1);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to transfer values");
@@ -148,20 +149,13 @@ public class HashMapTask {
 	
 	public void removeEntries(Map<?,?> map) throws CustomException {
 		try {
-			checkMapValidity(map);
+			UtilValidator.isNull(map);
 			map.clear();
 		} catch (CustomException e) {
 			e.appendMessage("Failed to remove entries.");
 			throw e;
 		}
 	}
-	
-	private void checkMapValidity(Map<?,?> map) throws CustomException {
-		if (map == null) {
-	        throw new CustomException("Map must not be null");
-	    }
-	}
-	
 	
 }
 

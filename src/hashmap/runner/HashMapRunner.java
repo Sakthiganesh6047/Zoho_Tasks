@@ -3,7 +3,6 @@ package hashmap.runner;
 import hashmap.task.HashMapTask;
 import util.UtilPrintOutput;
 import util.UtilGetInput;
-import java.io.FileNotFoundException;
 import java.util.Map;
 import arraylist.customobj.CustomObj;
 import exception.CustomException;
@@ -18,8 +17,8 @@ public class HashMapRunner {
 	}
 	
 	private void runOperations() {
-		int enteredChoice = 0;
-		
+		int enteredChoice = 1;
+			
 		do {
 			
 			try {
@@ -142,6 +141,7 @@ public class HashMapRunner {
 			}
 		}
 		while (enteredChoice != 0);
+	
 	}
 	
 	public <K,V> void createEmptyHashMap() throws CustomException {
@@ -240,7 +240,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void getValueOfNonExistingKey() throws CustomException, FileNotFoundException {
+	public <K,V> void getValueOfNonExistingKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
@@ -267,7 +267,7 @@ public class HashMapRunner {
 	
 	@SuppressWarnings("unchecked")
 	public <K,V> void removeKeyWhenValueMatches() throws CustomException {
-		Map<K,V> hashMap1 = completeHashMap();
+		Map<K,V> hashMap1 = null; //completeHashMap();
 		printMapAndSize(hashMap1);
 		K keyToRemove = (K) UtilGetInput.getStringInput("Enter the key to remove: ");
 		V checkValue = (V) UtilGetInput.getStringInput("Enter the corresponding value of the " + keyToRemove + " : ");

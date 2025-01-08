@@ -129,7 +129,6 @@ public class ArrayListRunner  {
 					
 				case 0:
 					UtilPrintOutput.printOutput("Terminated Successfully!");
-					
 					break;
 					
 				}
@@ -377,7 +376,7 @@ public class ArrayListRunner  {
 	}
 	
 	 @SuppressWarnings("unchecked")
-	private <T> T[] getArray(int count, Class<T> type) {
+	private <T> T[] getArray(int count, Class<T> type) throws CustomException {
 		 T[] array = (T[]) Array.newInstance(type, count);
 		 for (int i = 0; i < count; i++) {
             if (type == Long.class) {

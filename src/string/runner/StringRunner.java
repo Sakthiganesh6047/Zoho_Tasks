@@ -1,10 +1,12 @@
 package string.runner;
 
 import util.UtilGetInput;
+import util.UtilPrintOutput;
+import util.UtilValidator;
 import string.task.StringTask;
 import exception.CustomException;
-import string.validator.StringValidator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StringRunner {
 	static Scanner scanner = new Scanner(System.in);
@@ -22,33 +24,33 @@ public class StringRunner {
 
 			try {
 				
-				System.out.println("Select an operation to perform:");
-				System.out.println("1. Print String Length");
-				System.out.println("2. Convert into Character Array");
-				System.out.println("3. Penultimate Character");
-				System.out.println("4. Number of Occurrences");
-				System.out.println("5. Greatest Position of Character");
-				System.out.println("6. Last N Characters");
-				System.out.println("7. First N Characters");
-				System.out.println("8. Replace Characters");
-				System.out.println("9. Check String Starts With");
-				System.out.println("10. Check String Ends With");
-				System.out.println("11. Convert to Uppercase");
-				System.out.println("12. Convert to Lowercase");
-				System.out.println("13. Reverse String");
-				System.out.println("14. Accept Multiple String Line");
-				System.out.println("15. Concatenate Strings");
-				System.out.println("16. Enclose in Array");
-				System.out.println("17. Merge Strings with Symbol");
-				System.out.println("18. Equal Case Sensitive");
-				System.out.println("19. Equal Ignore Case Sensitive");
-				System.out.println("20. Space Check");
-				System.out.println("0. Exit");
+				UtilPrintOutput.printOutput("Select an operation to perform:");
+				UtilPrintOutput.printOutput("1. Print String Length");
+				UtilPrintOutput.printOutput("2. Convert into Character Array");
+				UtilPrintOutput.printOutput("3. Penultimate Character");
+				UtilPrintOutput.printOutput("4. Number of Occurrences");
+				UtilPrintOutput.printOutput("5. Greatest Position of Character");
+				UtilPrintOutput.printOutput("6. Last N Characters");
+				UtilPrintOutput.printOutput("7. First N Characters");
+				UtilPrintOutput.printOutput("8. Replace Characters");
+				UtilPrintOutput.printOutput("9. Check String Starts With");
+				UtilPrintOutput.printOutput("10. Check String Ends With");
+				UtilPrintOutput.printOutput("11. Convert to Uppercase");
+				UtilPrintOutput.printOutput("12. Convert to Lowercase");
+				UtilPrintOutput.printOutput("13. Reverse String");
+				UtilPrintOutput.printOutput("14. Accept Multiple String Line");
+				UtilPrintOutput.printOutput("15. Concatenate Strings");
+				UtilPrintOutput.printOutput("16. Enclose in Array");
+				UtilPrintOutput.printOutput("17. Merge Strings with Symbol");
+				UtilPrintOutput.printOutput("18. Equal Case Sensitive");
+				UtilPrintOutput.printOutput("19. Equal Ignore Case Sensitive");
+				UtilPrintOutput.printOutput("20. Space Check");
+				UtilPrintOutput.printOutput("0. Exit");
 				
 				enteredchoice = UtilGetInput.getIntInput("Enter your choice: ");
 				
 				if(enteredchoice < 0 || enteredchoice > 20){
-					printOutput("Invalid Choice, Enter a choice from 0 to 20");
+					UtilPrintOutput.printOutput("Invalid Choice, Enter a choice from 0 to 20");
 				}
 				
 				switch (enteredchoice){
@@ -133,7 +135,7 @@ public class StringRunner {
 						break;
 
 					case 0:
-						printOutput("Terminated successfully");
+						UtilPrintOutput.printOutput("Terminated successfully");
 						break;
 				}
 			}
@@ -148,25 +150,13 @@ public class StringRunner {
 		while (enteredchoice != 0);
 	}
 
-	public static void printOutput(String value) {
-		System.out.println(value);
-	}
-	
-	public static void printOutput(Boolean value) {
-		System.out.println(value);
-	}
-	
-	public static void printOutput(int value) {
-		System.out.println(value);
-	}
-
 	public void printStringLength (String[] args) throws CustomException  {
 		if(args.length > 0){
-			StringValidator.checkNullOrEmpty(args[0]);
-			printOutput("Length of the String is " + task.getLength(args[0]));
+			UtilValidator.isNull(args[0]);
+			UtilPrintOutput.printOutput("Length of the String is " + task.getLength(args[0]));
 		}
 		else{
-			printOutput("Input not found in the arguments");
+			UtilPrintOutput.printOutput("Input not found in the arguments");
 		}
 
 	}
@@ -174,105 +164,105 @@ public class StringRunner {
 	public void convertIntoCharacterArray() throws CustomException {
 		String chararrayinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 		char[] arrayResult = task.convertCharArray(chararrayinput);
-		printOutput("Character Array: ");
-			for (char c : arrayResult) {
+		UtilPrintOutput.printOutput("Character Array: ");
+		for (char c : arrayResult) {
 			System.out.print(c + " ");
-			}
+		}
 	}
 
 	public void penultimateCharacter() throws CustomException {
 	String penultimateinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	char penultimateResult = task.getPenultimateChar(penultimateinput, 2);
-	printOutput("The character from last 2 places is " + penultimateResult);
+	UtilPrintOutput.printOutput("The character from last 2 places is " + penultimateResult);
 	}
 
 	public void numberOfOccurrences() throws CustomException {
 	String occurrenceinput = UtilGetInput.getStringInput("Enter a string to perform no. of Occurrences search: ");
 	char searchingChar = UtilGetInput.getStringInput("Enter a character to search: ").charAt(0);
-	printOutput("The Number of Occurrences of the char is " + task.getCharOccurrence(occurrenceinput , searchingChar));
+	UtilPrintOutput.printOutput("The Number of Occurrences of the char is " + task.getCharOccurrence(occurrenceinput , searchingChar));
 	}
 
 	public void greatestPositionOfCharacter() throws CustomException {
 	String greatestpositioninput = UtilGetInput.getStringInput("Enter a string to perform no. of Occurrences search: ");
 	char repeatingChar = UtilGetInput.getStringInput("Enter a character to find Greatest Position: ").charAt(0);
 	if (task.getGreatestPosition(greatestpositioninput , repeatingChar) == -1){
-		printOutput("No such character exists.");
+		UtilPrintOutput.printOutput("No such character exists.");
 	} else {
-	printOutput("The greatest position of the char is " + task.getGreatestPosition(greatestpositioninput , repeatingChar));
+		UtilPrintOutput.printOutput("The greatest position of the char is " + task.getGreatestPosition(greatestpositioninput , repeatingChar));
 	}
 	}
 
 	public void lastNCharacters() throws CustomException {
 	String lastncharinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	int noOfLastChars = UtilGetInput.getIntInput("Enter the number of characters to print from the last: ");
-	printOutput("The last " + noOfLastChars + " characters are: " + task.getLastNChar(lastncharinput , noOfLastChars));
+	UtilPrintOutput.printOutput("The last " + noOfLastChars + " characters are: " + task.getLastNChar(lastncharinput , noOfLastChars));
 	}
 
 	public void firstNCharacters() throws CustomException {
 	String firstncharinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	int noOfStartChars = UtilGetInput.getIntInput("Enter the number of characters to print from the beginning: ");
-	printOutput("The First " + noOfStartChars + " characters are: " + task.getFirstNChar(firstncharinput , noOfStartChars));
+	UtilPrintOutput.printOutput("The First " + noOfStartChars + " characters are: " + task.getFirstNChar(firstncharinput , noOfStartChars));
 	}
 	
 	public void replaceCharacters() throws CustomException {
 	String replacefirstninput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	String replacementstring = UtilGetInput.getStringInput("Enter the string to replace: ");
 	int replacelength = UtilGetInput.getIntInput("Enter the no. of characters to replace: ");
-	printOutput("The Replaced String is: " + task.replaceSubstring(replacefirstninput , replacementstring , replacelength));
+	UtilPrintOutput.printOutput("The Replaced String is: " + task.replaceSubstring(replacefirstninput , replacementstring , replacelength));
 	}
 	
 	public void checkStringStartsWith() throws CustomException {
 	String startswithinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	String startCheckString = UtilGetInput.getStringInput("Enter the string to check from the start: ");
-	printOutput(task.compareStartChars(startswithinput , startCheckString));
+	UtilPrintOutput.printOutput(task.compareStartChars(startswithinput , startCheckString));
 	}
 	
 	public void checkStringEndsWith() throws CustomException {
 	String endswithinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
 	String endCheckString = UtilGetInput.getStringInput("Enter the string to check from the end: ");
-	printOutput(task.compareEndChars(endswithinput , endCheckString));
+	UtilPrintOutput.printOutput(task.compareEndChars(endswithinput , endCheckString));
 	}
 	
 	public void convertToUppercase() throws CustomException {
 	String touppercaseinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
-	printOutput(task.convertingToUpperCase(touppercaseinput));
+	UtilPrintOutput.printOutput(task.convertingToUpperCase(touppercaseinput));
 	}
 	
 	public void convertToLowercase() throws CustomException {
 	String tolowercaseinput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
-	printOutput(task.convertingToLowerCase(tolowercaseinput));
+	UtilPrintOutput.printOutput(task.convertingToLowerCase(tolowercaseinput));
 	}
 	
 	public void reverseString() throws CustomException {
 	String reversinginput = UtilGetInput.getStringInput("Enter a string to perform the selected operation: ");
-	printOutput(task.reversingString(reversinginput));
+	UtilPrintOutput.printOutput(task.reversingString(reversinginput));
 	}
 	
 	public void acceptMultipleStringLine() throws CustomException {
 	String multiStringLine = UtilGetInput.getStringInput("Enter a line of multiple strings: ");
-	StringValidator.checkNullOrEmpty(multiStringLine);
-	printOutput("The Entered Multiple String line is: " + multiStringLine);
+	UtilValidator.isNull(multiStringLine);
+	UtilPrintOutput.printOutput("The Entered Multiple String line is: " + multiStringLine);
 	}
 	
 	public void concatenateStrings() throws CustomException {
 	String concatenateStringLine = UtilGetInput.getStringInput("Enter a line of multiple strings: ");
-	printOutput("The Concatenated String: " + task.concatenateMultipleStrings(concatenateStringLine , " "));
+	UtilPrintOutput.printOutput("The Concatenated String: " + task.concatenateMultipleStrings(concatenateStringLine , " "));
 	}
 	
 	public void encloseInArray() throws CustomException {
 	String toBeEnclosedLine = UtilGetInput.getStringInput("Enter a line of multiple strings: ");
 	String splittingchars = UtilGetInput.getStringInput("Enter the enclosing character: ");
 	String[] enclosedArray = task.encloseInArray(toBeEnclosedLine , splittingchars);
-	printOutput("Enclosed Strings:");
+	UtilPrintOutput.printOutput("Enclosed Strings:");
 	for (String str : enclosedArray){
-		printOutput(str);
+		UtilPrintOutput.printOutput(str);
 	}
 	}
 	
 	public void mergeStringsWithSymbol() throws CustomException {
 	Boolean condition = true;
 	ArrayList<String> multiStringArrayList = new ArrayList<>();
-	printOutput("Enter a line of multiple strings (enter an empty line to finish): ");
+	UtilPrintOutput.printOutput("Enter a line of multiple strings (enter an empty line to finish): ");
 	while (condition == true) {
 		String stringInput = scanner.nextLine();
 		if (stringInput.isEmpty()) {
@@ -281,23 +271,23 @@ public class StringRunner {
 		multiStringArrayList.add(stringInput);
 	}
 	CharSequence joiningcharacter = UtilGetInput.getStringInput("Enter the joining character: ");
-	printOutput("Merged string: " + task.mergeStringWithSymbol(multiStringArrayList , joiningcharacter));
+	UtilPrintOutput.printOutput("Merged string: " + task.mergeStringWithSymbol(multiStringArrayList , joiningcharacter));
 	}
 	
 	public void equalCaseSensitive() throws CustomException {
 	String firstStringLine = UtilGetInput.getStringInput("Enter the first string: ");
 	String secondStringLine = UtilGetInput.getStringInput("Enter the second string: ");
-	printOutput(task.areStringsCaseEqual(firstStringLine, secondStringLine));
+	UtilPrintOutput.printOutput(task.areStringsCaseEqual(firstStringLine, secondStringLine));
 	}
 	
 	public void equalIgnoreCaseSensitive() throws CustomException {
 	String firstStringLineIC = UtilGetInput.getStringInput("Enter the first string: ");
 	String secondStringLineIC = UtilGetInput.getStringInput("Enter the second string: ");
-	printOutput(task.areStringsIgnoreCaseEqual(firstStringLineIC, secondStringLineIC));
+	UtilPrintOutput.printOutput(task.areStringsIgnoreCaseEqual(firstStringLineIC, secondStringLineIC));
 	}
 	
 	public void spaceCheck() throws CustomException {
 	String toBeTrimmedString = UtilGetInput.getStringInput("Enter the string: ");
-	printOutput(task.trimString(toBeTrimmedString));
+	UtilPrintOutput.printOutput(task.trimString(toBeTrimmedString));
 	}	
 }
