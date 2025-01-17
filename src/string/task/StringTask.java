@@ -1,9 +1,10 @@
 package string.task;
 
 import java.util.*;
+
+import util.CustomException;
 import util.UtilGetInput;
 import util.UtilValidator;
-import exception.CustomException;
 
 public class StringTask {
 

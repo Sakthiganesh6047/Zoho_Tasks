@@ -2,7 +2,8 @@ package arraylist.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import exception.CustomException;
+
+import util.CustomException;
 import util.UtilValidator;
 
 public class ArrayListTask {

@@ -1,11 +1,13 @@
 package inheritance.task;
 
-import util.UtilPrintOutput;
+import java.util.logging.Logger;
 
 public class Car {
 	
+	private static final Logger logger = Logger.getLogger(Car.class.getName());
+	
 	public Car(String message){
-		UtilPrintOutput.printOutput(message);
+		logger.info(message);
 	}
 	
 	public Car(){
@@ -36,7 +38,7 @@ public class Car {
 	}
 	
 	public void maintenance() {
-		UtilPrintOutput.printOutput("Car under Maintenance");
+		logger.info("Car under Maintenance");
 	}
 }
 

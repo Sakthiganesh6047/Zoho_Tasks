@@ -1,20 +1,12 @@
 package util;
 
-import java.util.*;
+import java.util.logging.Logger;
 
 public class UtilPrintOutput {
-
-	static Scanner scanner = new Scanner(System.in);
 	
-	public static void printOutput(String value) {
-			System.out.println(value);
+	private static final Logger logger = Logger.getLogger(UtilPrintOutput.class.getName());
+	
+	public static <T> void printOutput(T value) {
+			logger.info((String) value);
 		}
-		
-	public static void printOutput(int value){
-		System.out.println(value);
-	}
-	
-	public static void printOutput(Boolean value) {
-		System.out.println(value);
-	}
 }

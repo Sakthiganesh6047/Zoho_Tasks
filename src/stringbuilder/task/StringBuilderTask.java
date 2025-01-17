@@ -1,6 +1,6 @@
 package stringbuilder.task;
 
-import exception.CustomException;
+import util.CustomException;
 import util.UtilValidator;
 
 public class StringBuilderTask{

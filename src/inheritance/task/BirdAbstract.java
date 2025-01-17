@@ -1,15 +1,17 @@
 package inheritance.task;
 
-import util.UtilPrintOutput;
+import java.util.logging.Logger;
 
 public abstract class BirdAbstract {
+	
+	private static final Logger logger = Logger.getLogger(BirdAbstract.class.getName());
 
 	public void fly(){
-		UtilPrintOutput.printOutput("The Bird is Flying");
+		logger.info("The Bird is Flying");
 	}
 	
 	public void speak() {
-		UtilPrintOutput.printOutput("The Bird is speaking");
+		logger.info("The Bird is speaking");
 	}
 	
 }

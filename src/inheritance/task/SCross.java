@@ -1,8 +1,10 @@
 package inheritance.task;
 
-import util.UtilPrintOutput;
+import java.util.logging.Logger;
 
 public class SCross extends Car {
+	
+	private static final Logger logger = Logger.getLogger(SCross.class.getName());
 	
 	private int noofseats;
 	public void setNoOfSeats(int seats) {
@@ -37,7 +39,7 @@ public class SCross extends Car {
 	}
 	
 	public void maintenance() {
-		UtilPrintOutput.printOutput("Maruti SCross under Maintenance");
+		logger.info("Maruti SCross under Maintenance");
 	}
 	
 }

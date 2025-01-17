@@ -1,9 +1,12 @@
 package inheritance.task;
 
-import util.UtilPrintOutput;
+import java.util.logging.Logger;
 
 public class Duck extends Bird {
+	
+	private static final Logger logger = Logger.getLogger(Duck.class.getName());
+	
 	public void fly(){
-		UtilPrintOutput.printOutput("The Bird is flying");
+		logger.info("The Bird is flying");
 	}
 }

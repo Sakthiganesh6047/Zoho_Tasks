@@ -3,18 +3,17 @@ package arraylist.runner;
 import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
+import java.util.logging.Logger;
 import arraylist.customobj.CustomObj;
 import arraylist.task.ArrayListTask;
+import util.CustomException;
 import util.UtilGetInput;
-import util.UtilPrintOutput;
 import util.UtilPrintInFile;
-import exception.CustomException;
 
 public class ArrayListRunner  {
 	
 	ArrayListTask task = new ArrayListTask();
-	Scanner scanner = new Scanner(System.in);
+	private static final Logger logger = Logger.getLogger(ArrayListRunner.class.getName());
 
 	public static void main(String[] args) throws CustomException {
 		ArrayListRunner runner = new ArrayListRunner();
@@ -28,29 +27,29 @@ public class ArrayListRunner  {
 			
 			try {
 			
-				UtilPrintOutput.printOutput("1. Create a Arraylist");
-				UtilPrintOutput.printOutput("2. Create a Arraylist with Strings");
-				UtilPrintOutput.printOutput("3. Create a Arraylist with Integers");
-				UtilPrintOutput.printOutput("4. Create a Arraylist with Coustom Objects");
-				UtilPrintOutput.printOutput("5. Create a Arraylist with various types");
-				UtilPrintOutput.printOutput("6. Find the Index of a string in the ArrayList");
-				UtilPrintOutput.printOutput("7. Printing using Iterator method and Forloop");
-				UtilPrintOutput.printOutput("8. Print the String at a given index in the ArrayList");
-				UtilPrintOutput.printOutput("9. Find the first & last position of a duplicate string");
-				UtilPrintOutput.printOutput("10. Insert String at a given index");
-				UtilPrintOutput.printOutput("11. Create a SubArraylist with existing list");
-				UtilPrintOutput.printOutput("12. Create a combined Arraylist");
-				UtilPrintOutput.printOutput("13. Create a combined Arraylist in inverse order");
-				UtilPrintOutput.printOutput("14. Create a Arraylist with Decimal entries");
-				UtilPrintOutput.printOutput("15. Remove all from the Arraylist");
-				UtilPrintOutput.printOutput("16. Retain all from the Arraylist");
-				UtilPrintOutput.printOutput("17. Remove the all from Arraylist with long entries");
-				UtilPrintOutput.printOutput("18. Check the presence of string in a ArrayList");
-				UtilPrintOutput.printOutput("0. Terminate Program");
+				logger.info("1. Create a Arraylist");
+				logger.info("2. Create a Arraylist with Strings");
+				logger.info("3. Create a Arraylist with Integers");
+				logger.info("4. Create a Arraylist with Coustom Objects");
+				logger.info("5. Create a Arraylist with various types");
+				logger.info("6. Find the Index of a string in the ArrayList");
+				logger.info("7. Printing using Iterator method and Forloop");
+				logger.info("8. Print the String at a given index in the ArrayList");
+				logger.info("9. Find the first & last position of a duplicate string");
+				logger.info("10. Insert String at a given index");
+				logger.info("11. Create a SubArraylist with existing list");
+				logger.info("12. Create a combined Arraylist");
+				logger.info("13. Create a combined Arraylist in inverse order");
+				logger.info("14. Create a Arraylist with Decimal entries");
+				logger.info("15. Remove all from the Arraylist");
+				logger.info("16. Retain all from the Arraylist");
+				logger.info("17. Remove the all from Arraylist with long entries");
+				logger.info("18. Check the presence of string in a ArrayList");
+				logger.info("0. Terminate Program");
 				enteredChoice = UtilGetInput.getIntInput("Enter the choice of operation: ");
 				
 				 if (enteredChoice < 0 || enteredChoice > 18) {
-					 UtilPrintOutput.printOutput("Invalid Choice, Enter a choice from 0 to 18");
+					 logger.info("Invalid Choice, Enter a choice from 0 to 18");
 				 }
 				
 				switch(enteredChoice) {
@@ -128,12 +127,12 @@ public class ArrayListRunner  {
 					break;
 					
 				case 0:
-					UtilPrintOutput.printOutput("Terminated Successfully!");
+					logger.info("Terminated Successfully!");
 					break;
 					
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.severe("An Error occured: " + e.getMessage());
 			}
 		}
 		while (enteredChoice != 0);
@@ -197,9 +196,9 @@ public class ArrayListRunner  {
 		String stringToFind = UtilGetInput.getStringInput("Enter the string to find its index: ");
 		int stringIndex = task.lastOccurenceOfString(arrayList1, stringToFind);
 		 if (stringIndex != -1) {
-	            System.out.println("The index of " + stringToFind +" is: " + stringIndex);
+	            logger.info("The index of " + stringToFind +" is: " + stringIndex);
 	        } else {
-	            System.out.println(stringToFind + " is not in the ArrayList.");
+	            logger.info(stringToFind + " is not in the ArrayList.");
 	        }
 		printSizeAndList(arrayList1);
 	}
@@ -213,7 +212,7 @@ public class ArrayListRunner  {
 	public <T> void getStringByIndex() throws CustomException {
 		List<T> arrayList1 = createArrayListWithStrings();
 		int stringIndex = UtilGetInput.getIntInput("Enter the index of the string to retrieve: ");
-		UtilPrintOutput.printOutput("String at index " + stringIndex + ": " + task.getByIndex(arrayList1 , stringIndex));
+		logger.info("String at index " + stringIndex + ": " + task.getByIndex(arrayList1 , stringIndex));
 		printSizeAndList(arrayList1);
 	}
 	
@@ -223,10 +222,10 @@ public class ArrayListRunner  {
 		int firstIndex = task.firstOccurenceOfString(arrayList1, stringToFind);
 		int lastIndex = task.lastOccurenceOfString(arrayList1, stringToFind);
 		if (firstIndex != -1) {
-			UtilPrintOutput.printOutput("First occurrence of " + stringToFind + " is at index: " + firstIndex);
-			UtilPrintOutput.printOutput("Last occurrence of " + stringToFind + " is at index: " + lastIndex);
+			logger.info("First occurrence of " + stringToFind + " is at index: " + firstIndex);
+			logger.info("Last occurrence of " + stringToFind + " is at index: " + lastIndex);
         } else {
-        	UtilPrintOutput.printOutput( stringToFind + " is not in the ArrayList.");
+        	logger.info( stringToFind + " is not in the ArrayList.");
         }
 		printSizeAndList(arrayList1);
 	}
@@ -330,7 +329,7 @@ public class ArrayListRunner  {
 		task.addElementsToList(arrayList1, longArray);
 		printSizeAndList(arrayList1);
 		task.deleteList(arrayList1);
-		System.out.println(arrayList1);
+		logger.info("The arraylist is: " + arrayList1);
 		//printSizeAndList(arraylist1);
 	}
 	
@@ -339,30 +338,30 @@ public class ArrayListRunner  {
 		String inputString = util.UtilGetInput.getStringInput("Enter the String to check availability in the list: ");
 		Boolean availability = task.checkPresence(arrayList1 , inputString);
 		if (availability == true) {
-			UtilPrintOutput.printOutput("Yes, " + inputString + " is available in the created list");
+			logger.info("Yes, " + inputString + " is available in the created list");
 		} else {
-			UtilPrintOutput.printOutput("No, " + inputString + " is not available in the created list");
+			logger.info("No, " + inputString + " is not available in the created list");
 		}
 	}
 	
 	public void printSizeAndList(List<?> list) throws CustomException {
-		UtilPrintOutput.printOutput("The ArrayList is: " + list);
-		UtilPrintOutput.printOutput("The size of the list is: " + task.getSize(list));
+		logger.info("The ArrayList is: " + list);
+		logger.info("The size of the list is: " + task.getSize(list));
 	}
 	
 	@SuppressWarnings("unchecked")
 	private <T> void printByIterator(List<T> arraylist1) {
-		UtilPrintOutput.printOutput("Using Iterator to print elements:");
+		logger.info("Using Iterator to print elements:");
 		Iterator<String> iterator = (Iterator<String>) arraylist1.iterator();
 		while (iterator.hasNext()) {
-			UtilPrintOutput.printOutput(iterator.next());
+			logger.info(iterator.next());
 		}
 	}
 	
 	private <T> void printByForloop(List<T> arrayList1) {
-		UtilPrintOutput.printOutput("Using for loop to print elements:");
+		logger.info("Using for loop to print elements:");
 	    for (T element : arrayList1) {
-	    	UtilPrintOutput.printOutput((String) element);
+	    	logger.info((String) element);
 	    }
 	}
 	

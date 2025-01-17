@@ -1,7 +1,5 @@
 package util;
 
-import exception.CustomException;
-
 public class UtilValidator {
 
 	public static <T> void isNull(T Object) throws CustomException {

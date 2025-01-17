@@ -1,15 +1,17 @@
 package hashmap.runner;
 
 import hashmap.task.HashMapTask;
-import util.UtilPrintOutput;
+import util.CustomException;
 import util.UtilGetInput;
 import java.util.Map;
+import java.util.logging.Logger;
+
 import arraylist.customobj.CustomObj;
-import exception.CustomException;
 
 public class HashMapRunner {
 	
 	HashMapTask task = new HashMapTask();
+	private static final Logger logger = Logger.getLogger(HashMapRunner.class.getName());
 
 	public static void main(String[] args) throws CustomException {
 		HashMapRunner runner = new HashMapRunner();
@@ -23,31 +25,31 @@ public class HashMapRunner {
 			
 			try {
 			
-				UtilPrintOutput.printOutput("1. Create a HashMap");
-				UtilPrintOutput.printOutput("2. Create a HashMap with Strings as keys and values");
-				UtilPrintOutput.printOutput("3. Create a HashMap with integers as keys and values");
-				UtilPrintOutput.printOutput("4. Create a HashMap with Strings and intgers as keys and values");
-				UtilPrintOutput.printOutput("5. Create a HashMap with Strings and objects as keys and values");
-				UtilPrintOutput.printOutput("6. Create a HashMap with Strings as keys and values including null");
-				UtilPrintOutput.printOutput("7. Create a HashMap with null key and non null value");
-				UtilPrintOutput.printOutput("8. Check the existence of key in HashMap");
-				UtilPrintOutput.printOutput("9. Check the existence of value in HashMap");
-				UtilPrintOutput.printOutput("10. Create a HashMap with Strings as keys and values and alter it totally");
-				UtilPrintOutput.printOutput("11. Get a value of a existing key in a HashMap");
-				UtilPrintOutput.printOutput("12. Get a value of a non existing key in a HashMap");
-				UtilPrintOutput.printOutput("13. Return statement for a non existence key");
-				UtilPrintOutput.printOutput("14. Remove an existing key in the HashMap");
-				UtilPrintOutput.printOutput("15. Remove an existing key in the HashMap when value matches");
-				UtilPrintOutput.printOutput("16. Replace the value of an existing key in the HashMap");
-				UtilPrintOutput.printOutput("17. Replace the value of an existing key in the HashMap when value matches");
-				UtilPrintOutput.printOutput("18. Transfer all the keys & values of a HashMap to another HashMap");
-				UtilPrintOutput.printOutput("19. Iterate over a HashMap and print its keys and values");
-				UtilPrintOutput.printOutput("20. Remove all the entries in a HashMap");
-				UtilPrintOutput.printOutput("0. Terminate Program");
+				logger.info("1. Create a HashMap");
+				logger.info("2. Create a HashMap with Strings as keys and values");
+				logger.info("3. Create a HashMap with integers as keys and values");
+				logger.info("4. Create a HashMap with Strings and intgers as keys and values");
+				logger.info("5. Create a HashMap with Strings and objects as keys and values");
+				logger.info("6. Create a HashMap with Strings as keys and values including null");
+				logger.info("7. Create a HashMap with null key and non null value");
+				logger.info("8. Check the existence of key in HashMap");
+				logger.info("9. Check the existence of value in HashMap");
+				logger.info("10. Create a HashMap with Strings as keys and values and alter it totally");
+				logger.info("11. Get a value of a existing key in a HashMap");
+				logger.info("12. Get a value of a non existing key in a HashMap");
+				logger.info("13. Return statement for a non existence key");
+				logger.info("14. Remove an existing key in the HashMap");
+				logger.info("15. Remove an existing key in the HashMap when value matches");
+				logger.info("16. Replace the value of an existing key in the HashMap");
+				logger.info("17. Replace the value of an existing key in the HashMap when value matches");
+				logger.info("18. Transfer all the keys & values of a HashMap to another HashMap");
+				logger.info("19. Iterate over a HashMap and print its keys and values");
+				logger.info("20. Remove all the entries in a HashMap");
+				logger.info("0. Terminate Program");
 				enteredChoice = UtilGetInput.getIntInput("Enter the choice of operation: ");
 				
 				 if (enteredChoice < 0 || enteredChoice > 20) {
-					 UtilPrintOutput.printOutput("Invalid Choice, Enter a choice from 0 to 20");
+					 logger.info("Invalid Choice, Enter a choice from 0 to 20");
 				 }
 				
 				switch(enteredChoice) {
@@ -133,11 +135,11 @@ public class HashMapRunner {
 					break;
 					
 				case 0:
-					UtilPrintOutput.printOutput("Terminated Successfully!");
+					logger.info("Terminated Successfully!");
 					break;
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.severe("An error occurred: " + e.getMessage());
 			}
 		}
 		while (enteredChoice != 0);
@@ -200,9 +202,9 @@ public class HashMapRunner {
 		V checkValue = (V) UtilGetInput.getStringInput("Enter the key to check in the hashmap: ");
 		Boolean availability = task.checkValueExists(hashMap1 , checkValue);
 		if (availability) {
-			UtilPrintOutput.printOutput("Yes, " + checkValue + "exists in the HashMap.");
+			logger.info("Yes, " + checkValue + "exists in the HashMap.");
 		} else {
-			UtilPrintOutput.printOutput("No, " + checkValue + " not exists in the HashMap.");
+			logger.info("No, " + checkValue + " not exists in the HashMap.");
 		}
 	}
 	
@@ -213,9 +215,9 @@ public class HashMapRunner {
 		K checkKey = (K) UtilGetInput.getStringInput("Enter the key to check in the hashmap: ");
 		Boolean availability = task.checkKeyExists(hashMap1 , checkKey);
 		if (availability) {
-			UtilPrintOutput.printOutput("Yes, " + checkKey + "exists in the HashMap.");
+			logger.info("Yes, " + checkKey + "exists in the HashMap.");
 		} else {
-			UtilPrintOutput.printOutput("No, " + checkKey + " not exists in the HashMap.");
+			logger.info("No, " + checkKey + " not exists in the HashMap.");
 		}
 	}
 	
@@ -236,7 +238,7 @@ public class HashMapRunner {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
-		UtilPrintOutput.printOutput((String) task.getKeyValue(hashMap1, searchKey));
+		logger.info((String) task.getKeyValue(hashMap1, searchKey));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -245,7 +247,7 @@ public class HashMapRunner {
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
 		V defaultValue = (V) UtilGetInput.getStringInput("Enter the Defdault value in case of Non Existence key: ");
-		UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, defaultValue));
+		logger.info((String) task.getKeyValueOrDefault(hashMap1, searchKey, defaultValue));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -253,7 +255,7 @@ public class HashMapRunner {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
-		UtilPrintOutput.printOutput((String) task.getKeyValueOrDefault(hashMap1, searchKey, (V) "Zoho"));
+		logger.info((String) task.getKeyValueOrDefault(hashMap1, searchKey, (V) "Zoho"));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -327,14 +329,14 @@ public class HashMapRunner {
 	}
     
     private <K,V> void printMapAndSize(Map<K,V> inputhashmap) throws CustomException {
-		UtilPrintOutput.printOutput("The Hashmap is " + inputhashmap);
-		UtilPrintOutput.printOutput("The Size of the Hashmap is " + task.getSize(inputhashmap));
+		logger.info("The Hashmap is " + inputhashmap);
+		logger.info("The Size of the Hashmap is " + task.getSize(inputhashmap));
 	}
     
     
     private <K,V> void iterateHashMap(Map<K,V> map) throws CustomException {
 	    for (Map.Entry<K,V> entry : map.entrySet()) {
-	       UtilPrintOutput.printOutput("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+	       logger.info("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 	    }
     }
     
