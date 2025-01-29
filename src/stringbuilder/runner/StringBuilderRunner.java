@@ -2,13 +2,15 @@ package stringbuilder.runner;
 
 import stringbuilder.task.StringBuilderTask;
 import util.CustomException;
+import util.LoggerUtility;
 import util.UtilGetInput;
 import java.util.logging.Logger;
 
 public class StringBuilderRunner {
 	
     StringBuilderTask task = new StringBuilderTask(); 
-    private static final Logger logger = Logger.getLogger(StringBuilderRunner.class.getName());
+    
+    private static final Logger logger = LoggerUtility.getLogger(StringBuilderRunner.class , "/home/sakthi-pt7767/eclipse-workspace/Zoho_Tasks/LogFiles/SBLogs");
 
     public static void main(String[] args) throws CustomException {
         StringBuilderRunner runner = new StringBuilderRunner();
@@ -177,7 +179,8 @@ public class StringBuilderRunner {
         logger.info(task.getFinalString(createdSB));
     }
 
-    public void firstSeparatorIndex() throws CustomException {
+    @SuppressWarnings("unused")
+	public void firstSeparatorIndex() throws CustomException {
         StringBuilder createdSB = completeStringBuilder();
     }
     

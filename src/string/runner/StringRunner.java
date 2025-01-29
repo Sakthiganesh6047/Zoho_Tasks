@@ -3,9 +3,11 @@ package string.runner;
 import util.CustomException;
 import util.UtilGetInput;
 import util.UtilValidator;
-import string.task.StringTask;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import string.task.StringTask;
 
 public class StringRunner {
 	

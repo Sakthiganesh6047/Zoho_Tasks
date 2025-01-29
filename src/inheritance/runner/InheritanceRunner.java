@@ -8,11 +8,12 @@ import inheritance.task.SCross;
 import inheritance.task.Swift;
 import inheritance.task.XUV;
 import util.CustomException;
+import util.LoggerUtility;
 import util.UtilGetInput;
 
 public class InheritanceRunner{
 	
-	private static final Logger logger = Logger.getLogger(InheritanceRunner.class.getName());
+	private static final Logger logger = LoggerUtility.getLogger(InheritanceRunner.class , "/home/sakthi-pt7767/eclipse-workspace/Zoho_Tasks/LogFiles/InheritanceLogs");
 	
 	public static void main(String[] args) throws CustomException {
 		InheritanceRunner runner = new InheritanceRunner();
@@ -154,6 +155,7 @@ public class InheritanceRunner{
 		identifyObject(xuv);
 	}
 	
+	@SuppressWarnings("unused")
 	public void swiftTestMethods(){
 		Swift swiftobj1 = new Swift();
 		testMethodOfSwift(swiftobj1);
@@ -176,6 +178,7 @@ public class InheritanceRunner{
 		swift.maintenance();
 	}
 	
+	@SuppressWarnings("unused")
 	public void constructorOverload(){
 		XUV xuvobj1 = new XUV();
 		//Car xuvobj2 = new XUV("instance of xuv using overloaded constructor");

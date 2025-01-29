@@ -1,17 +1,22 @@
 package util;
 
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.ZoneOffset;
 
 public class TimeUtil {
 
-    public static String getCurrentTimeWithDate() throws CustomException {
+    public static String getCurrentTimeWithDate(String format) throws CustomException {
     	try {
         LocalDateTime currentTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return currentTime.format(formatter);
     	} catch(Exception e) {
-    		throw new CustomException("Error occured in while getting" , e);
+    		throw new CustomException("Error occured in getting Current time with date." , e);
     	}
     }
 
@@ -31,54 +36,56 @@ public class TimeUtil {
     	}
     }
 
-    public static String getCurrentTimeInNewYork() throws CustomException {
+    public static String getCurrentTimeInZone(String zoneId , String format) throws CustomException {
     	try {
-	        ZonedDateTime newYorkTime = ZonedDateTime.now(ZoneId.of("America/New_York"));
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-	        return newYorkTime.format(formatter); 
+	        ZonedDateTime zoneTime = ZonedDateTime.now(ZoneId.of(zoneId));
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+	        return zoneTime.format(formatter); 
     	} catch(Exception e) {
-    		throw new CustomException("Error while getting time in New York" , e);
-    	}
-    }
-    
-    public static String getCurrentTimeInLondon() throws CustomException {
-    	try {
-    	ZonedDateTime londonTime = ZonedDateTime.now(ZoneId.of("Europe/London"));
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-    	return londonTime.format(formatter);
-    	} catch(Exception e) {
-    		throw new CustomException("Error in getting time in london" , e);
+    		throw new CustomException("Error while getting time in " + zoneId , e);
     	}
     }
 
-    public static String getWeekdayFromMillis(long millis) throws CustomException {
+    public static String getWeekdayFromMillis(long millis , String zone) throws CustomException {
     	UtilValidator.isNull(millis);
     	try {
-	        LocalDate date = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate();
+    		ZoneId zoneId = ZoneId.of(zone);
+	        LocalDate date = Instant.ofEpochMilli(millis).atZone(zoneId).toLocalDate();
 	        return date.getDayOfWeek().toString();
     	} catch(Exception e) {
     		throw new CustomException("Error in getting weekday" , e);
     	}
     }
 
-    public static String getMonthFromMillis(long millis) throws CustomException {
+    public static String getMonthFromMillis(long millis , String zone) throws CustomException {
     	UtilValidator.isNull(millis);
     	try {
-	        LocalDate date = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate();
+    		ZoneId zoneId = ZoneId.of(zone);
+	        LocalDate date = Instant.ofEpochMilli(millis).atZone(zoneId).toLocalDate();
 	        return date.getMonth().toString();
     	} catch (Exception e) {
     		throw new CustomException("Error in getting month" , e);
     	}
     }
 
-    public static int getYearFromMillis(long millis) throws CustomException {
+    public static int getYearFromMillis(long millis , String zone) throws CustomException {
     	UtilValidator.isNull(millis);
     	try {
-	        LocalDate date = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate();
+    		ZoneId zoneId = ZoneId.of(zone);
+	        LocalDate date = Instant.ofEpochMilli(millis).atZone(zoneId).toLocalDate();
 	        return date.getYear();
     	} catch(Exception e) {
     		throw new CustomException("Error in getting year from millis" , e);
     	}
+    }
+    
+    public static String getOffsetForZoneID(String zoneIdInput , String dateInput) {
+    	ZoneId zoneId = ZoneId.of(zoneIdInput);
+    	LocalDate date = LocalDate.parse(dateInput);
+    	LocalDateTime dateTime = date.atStartOfDay();
+        ZonedDateTime zonedDateTime = dateTime.atZone(zoneId);
+        ZoneOffset offset = zonedDateTime.getOffset();
+        return offset.toString();
     }
 }
 

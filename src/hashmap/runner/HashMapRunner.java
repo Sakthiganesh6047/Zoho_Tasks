@@ -2,16 +2,18 @@ package hashmap.runner;
 
 import hashmap.task.HashMapTask;
 import util.CustomException;
+import util.LoggerUtility;
 import util.UtilGetInput;
 import java.util.Map;
 import java.util.logging.Logger;
-
 import arraylist.customobj.CustomObj;
+import arraylist.runner.ArrayListRunner;
 
 public class HashMapRunner {
 	
 	HashMapTask task = new HashMapTask();
-	private static final Logger logger = Logger.getLogger(HashMapRunner.class.getName());
+	
+	private static final Logger logger = LoggerUtility.getLogger(ArrayListRunner.class , "/home/sakthi-pt7767/eclipse-workspace/Zoho_Tasks/LogFiles/HPLogs");
 
 	public static void main(String[] args) throws CustomException {
 		HashMapRunner runner = new HashMapRunner();
@@ -146,28 +148,28 @@ public class HashMapRunner {
 	
 	}
 	
-	public <K,V> void createEmptyHashMap() throws CustomException {
-		Map<K,V> hashmap1 = task.createHashMap();
-		printMapAndSize(hashmap1);
+	private <K,V> void createEmptyHashMap() throws CustomException {
+		Map<K,V> hashMap1 = task.createHashMap();
+		printMapAndSize(hashMap1);
 	}
 	
-	public <K,V> void createHashMapWithStrings() throws CustomException {
+	private <K,V> void createHashMapWithStrings() throws CustomException {
 		Map<K,V> hashmap1 = completeHashMap();
 		printMapAndSize(hashmap1);
 	}
 	
-	public <K,V> void createHashMapWithIntegers() throws CustomException {
+	private <K,V> void createHashMapWithIntegers() throws CustomException {
 		Map<K,V> hashmap1 = completeHashMap();
 		printMapAndSize(hashmap1);
 	}
 	
-	public <K,V> void createHashMapWithStringsAndIntegers() throws CustomException {
+	private <K,V> void createHashMapWithStringsAndIntegers() throws CustomException {
 		Map<K,V> hashmap1 = completeHashMap();
 		printMapAndSize(hashmap1);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void createHashMapWithStringsAndObjects() throws CustomException {
+	private <K,V> void createHashMapWithStringsAndObjects() throws CustomException {
 		Map<K,V> hashMap1 = task.createHashMap();
 		int numberOfPairs = UtilGetInput.getIntInput("Enter the no. of pairs to add in HashMap: ");
 		for (int i = 0 ; i < numberOfPairs ; i++) {
@@ -181,7 +183,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void hashMapWithStringsIncludingNull() throws CustomException {
+	private <K,V> void hashMapWithStringsIncludingNull() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		task.addKeyValuePair(hashMap1, (K) "Asg", (V) null );
 		printMapAndSize(hashMap1);
@@ -189,13 +191,13 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void hashMapOfNullKey() throws CustomException {
+	private <K,V> void hashMapOfNullKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		task.addKeyValuePair(hashMap1, (K) null, (V) Integer.valueOf(22));
 		printMapAndSize(hashMap1);
 	}
 	
-	public <K,V> void checkExistenceOfValue() throws CustomException {
+	private <K,V> void checkExistenceOfValue() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		@SuppressWarnings("unchecked")
@@ -209,7 +211,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void checkExistenceOfKey() throws CustomException {
+	private <K,V> void checkExistenceOfKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K checkKey = (K) UtilGetInput.getStringInput("Enter the key to check in the hashmap: ");
@@ -222,7 +224,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void totalAlterInHashMap() throws CustomException {
+	private <K,V> void totalAlterInHashMap() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K[] keyarray = task.extractKeysToArray(hashMap1);
@@ -234,7 +236,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void getValueOfExistingKey() throws CustomException {
+	private <K,V> void getValueOfExistingKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
@@ -242,7 +244,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void getValueOfNonExistingKey() throws CustomException {
+	private <K,V> void getValueOfNonExistingKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
@@ -251,7 +253,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void returnStatementForNonExistenceKey() throws CustomException {
+	private <K,V> void returnStatementForNonExistenceKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K searchKey = (K) UtilGetInput.getStringInput("Enter the key to get the value: ");
@@ -259,7 +261,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void removeExistingKeyHashMap() throws CustomException {
+	private <K,V> void removeExistingKeyHashMap() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K keyToRemove = (K) UtilGetInput.getStringInput("Enter the key to remove: ");
@@ -268,7 +270,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void removeKeyWhenValueMatches() throws CustomException {
+	private <K,V> void removeKeyWhenValueMatches() throws CustomException {
 		Map<K,V> hashMap1 = null; //completeHashMap();
 		printMapAndSize(hashMap1);
 		K keyToRemove = (K) UtilGetInput.getStringInput("Enter the key to remove: ");
@@ -278,7 +280,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void replaceKey() throws CustomException {
+	private <K,V> void replaceKey() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K replaceKey = (K) UtilGetInput.getStringInput("Enter the key to replace: ");
@@ -288,7 +290,7 @@ public class HashMapRunner {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void replaceKeyWhenValueMatches() throws CustomException {
+	private <K,V> void replaceKeyWhenValueMatches() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		printMapAndSize(hashMap1);
 		K replaceKey = (K) UtilGetInput.getStringInput("Enter the key to replace: ");
@@ -298,7 +300,7 @@ public class HashMapRunner {
 		printMapAndSize(hashMap1);
 	}
 	
-	public <K,V> void transferValuesToNewHashMap() throws CustomException {
+	private <K,V> void transferValuesToNewHashMap() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		Map<K,V> hashMap2 = completeHashMap();
 		printMapAndSize(hashMap1);
@@ -308,19 +310,19 @@ public class HashMapRunner {
 		printMapAndSize(hashMap2);
 	}
 	
-	public <K,V> void iteratePrintKeysAndValues() throws CustomException {
+	private <K,V> void iteratePrintKeysAndValues() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		iterateHashMap(hashMap1);
 	}
 	
-	public <K,V> void removeAllEntries() throws CustomException {
+	private <K,V> void removeAllEntries() throws CustomException {
 		Map<K,V> hashMap1 = completeHashMap();
 		task.removeEntries(hashMap1);
 		printMapAndSize(hashMap1);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <K,V> void addValuesToMap(Map<K,V> inputHashMap , int numberOfPairs) throws CustomException {
+	private <K,V> void addValuesToMap(Map<K,V> inputHashMap , int numberOfPairs) throws CustomException {
 		for (int i = 0; i < numberOfPairs; i++) {
             K key = (K) UtilGetInput.getStringInput("Enter key " + (i + 1) + " : ");
             V value = (V) UtilGetInput.getStringInput("Enter value for key " + key + " : ");
@@ -328,7 +330,7 @@ public class HashMapRunner {
         }
 	}
     
-    private <K,V> void printMapAndSize(Map<K,V> inputhashmap) throws CustomException {
+	private <K,V> void printMapAndSize(Map<K,V> inputhashmap) throws CustomException {
 		logger.info("The Hashmap is " + inputhashmap);
 		logger.info("The Size of the Hashmap is " + task.getSize(inputhashmap));
 	}

@@ -1,15 +1,20 @@
 package arraylist.task;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import util.CustomException;
 import util.UtilValidator;
 
 public class ArrayListTask {
 
-    public <T> List<T> createList() {
-        return new ArrayList<>();
+	@SuppressWarnings("unchecked")
+	public <T> List<T> createList(String className) throws CustomException {
+    	try {
+			Class<?> arrayListClass = Class.forName(className);
+			List<T> newList = (List<T>) arrayListClass.getDeclaredConstructor().newInstance();
+		    return newList;
+    	} catch (Exception e) {
+			throw new CustomException("Error in creating arraylist using Reflection" , e);
+		}
     }
 	
 	public <T> List<T> addElementsToList(List<T> list, T[] elements) throws CustomException {
@@ -91,18 +96,20 @@ public class ArrayListTask {
 		if (startIndex < 0 || endIndex < 0 || startIndex > endIndex || endIndex > list.size()) {
 			throw new CustomException("startindex or endindex is greater than the size of Arraylist.");
 		}
-			return new ArrayList<>(list.subList(startIndex, endIndex));
+			return list.subList(startIndex, endIndex);
 		} catch (CustomException e) {
 			e.appendMessage("Failed to create sub arrayList");
 			throw e;
 		}
 	}
 	
-	public <T> List<?> combinedList(List<T> list1, List<T> list2) throws CustomException {
+	public <T> List<T> combinedList(List<T> list1, List<T> list2 , String className) throws CustomException {
 		try {
 			UtilValidator.isNull(list1);
 			UtilValidator.isNull(list2);
-			ArrayList<T> list3 = new ArrayList<>(list1);
+			
+			List<T> list3 = createList(className);
+			list3.addAll(list1);
 			list3.addAll(list2);
 			return list3;
 		} catch (CustomException e) {
