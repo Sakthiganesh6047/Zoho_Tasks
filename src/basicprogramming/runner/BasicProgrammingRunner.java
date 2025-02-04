@@ -116,6 +116,7 @@ public class BasicProgrammingRunner {
 				 }
 				
 			} catch(CustomException e) {
+				e.printStackTrace();
 				logger.severe("An error occurred " + e.getMessage());
 				logger.log(Level.SEVERE, "An exception occurred", e);
 			}
